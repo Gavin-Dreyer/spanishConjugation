@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import IndicativePresent from './components/IndicativePresent'
 import "./App.css";
 
 function App() {
+  const inputElement = useRef(null)
+
   const [verbs, setVerbs] = useState();
   const [currentQ, setCurrentQ] = useState()
   const [totalQs, setTotalQs] = useState(0)
@@ -25,6 +27,7 @@ function App() {
     return <h2>Loading...</h2>
   }
 
+  console.log(currentQ)
   const checkAnswer = () => {
     if (answers.answerInput === currentQ) {
       setTotalQs(totalQs + 1)
@@ -45,12 +48,43 @@ function App() {
   const indicative = verbs.filter(item => item.mood === 'Indicativo')
   const indPresent = indicative.filter(item => item.tense === 'Presente')
 
-
+  function tildes(letter) {
+    if (letter === 'á') {
+      setAnswers({ answerInput: answers.answerInput + 'á' })
+    }
+    if (letter === 'é') {
+      setAnswers({ answerInput: answers.answerInput + 'é' })
+    }
+    if (letter === 'í') {
+      setAnswers({ answerInput: answers.answerInput + 'í' })
+    }
+    if (letter === 'ó') {
+      setAnswers({ answerInput: answers.answerInput + 'ó' })
+    }
+    if (letter === 'ú') {
+      setAnswers({ answerInput: answers.answerInput + 'ú' })
+    }
+    if (letter === 'ñ') {
+      setAnswers({ answerInput: answers.answerInput + 'ñ' })
+    }
+    inputElement.current.focus()
+  }
 
   return (
     <div className="App">
       <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} />
+
       {totalQs}
+
+      <div className="tildeButtonCon">
+        <button className="tildeButton" onClick={() => tildes('á')}>á</button>
+        <button className="tildeButton" onClick={() => tildes('é')}>é</button>
+        <button className="tildeButton" onClick={() => tildes('í')}>í</button>
+        <button className="tildeButton" onClick={() => tildes('ó')}>ó</button>
+        <button className="tildeButton" onClick={() => tildes('ú')}>ú</button>
+        <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
+      </div>
+
       <form className='answerForm' onSubmit={handleSubmit}>
         <input
           type='text'
@@ -58,9 +92,11 @@ function App() {
           className='answerInput'
           value={answers.answerInput}
           onChange={handleChange}
+          ref={inputElement}
         />
         <button className='answerInput'>Submit!</button>
       </form>
+
     </div>
   )
 }
