@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 const IndicativePresent = (props) => {
     const [randVerb, setRandVerb] = useState()
-    const [randomize, setRandomize] = useState()
+    const [randomizedTense, setRandomizedTense] = useState()
 
     useEffect(() => {
         //randomly selects a verb from an array of indictive present verbs
@@ -11,7 +11,6 @@ const IndicativePresent = (props) => {
     }, [props.totalQs])
 
     useEffect(() => {
-        console.log(randVerb)
         if (randVerb) viewPicker(randVerb)
     }, [randVerb])
 
@@ -49,14 +48,12 @@ const IndicativePresent = (props) => {
             }
         })
         pOVToString = pOVToString.join('')
-        setRandomize(pOVToString)
+        setRandomizedTense(pOVToString)
     }
-
-    console.log(randomize)
 
     return (
         <div>
-            Conjugate {randVerb.spanishVerb} in {randomize}
+            Conjugate {randVerb.spanishVerb} in {randomizedTense}
         </div>
     )
 }
