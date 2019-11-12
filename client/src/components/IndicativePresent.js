@@ -83,7 +83,7 @@ const IndicativePresent = (props) => {
     }
 
     return (
-        <div>
+        <div className="question">
             Conjugate {randVerb.spanishVerb} in {randomizedTense}
         </div>
     )

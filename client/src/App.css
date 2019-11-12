@@ -21,11 +21,15 @@
   color: #09d3ac;
 }
 
+.answerFormCon {
+  margin-top: 3rem;
+}
+
 .answerForm {
   display: flex;
   flex-direction: column;
   width: 30%;
-  margin: 5rem auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 
 .answerInput {
@@ -34,5 +38,15 @@
 }
 
 .tildeButton {
+  width: 50px;
+  padding: .5rem;
+  margin: .3rem;
   font-size: 2rem;
+}
+
+.totalQs {
+  font-size: 2rem;
+}
+.question {
+  font-size: 3rem;
 }

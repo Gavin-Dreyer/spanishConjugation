@@ -74,29 +74,32 @@ function App() {
     <div className="App">
       <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} />
 
-      {totalQs}
-
-      <div className="tildeButtonCon">
-        <button className="tildeButton" onClick={() => tildes('á')}>á</button>
-        <button className="tildeButton" onClick={() => tildes('é')}>é</button>
-        <button className="tildeButton" onClick={() => tildes('í')}>í</button>
-        <button className="tildeButton" onClick={() => tildes('ó')}>ó</button>
-        <button className="tildeButton" onClick={() => tildes('ú')}>ú</button>
-        <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
+      <div className="totalQs">
+        {totalQs}
       </div>
 
-      <form className='answerForm' onSubmit={handleSubmit}>
-        <input
-          type='text'
-          name='answerInput'
-          className='answerInput'
-          value={answers.answerInput}
-          onChange={handleChange}
-          ref={inputElement}
-        />
-        <button className='answerInput'>Submit!</button>
-      </form>
+      <div className="answerFormCon">
+        <div className="tildeButtonCon">
+          <button className="tildeButton" onClick={() => tildes('á')}>á</button>
+          <button className="tildeButton" onClick={() => tildes('é')}>é</button>
+          <button className="tildeButton" onClick={() => tildes('í')}>í</button>
+          <button className="tildeButton" onClick={() => tildes('ó')}>ó</button>
+          <button className="tildeButton" onClick={() => tildes('ú')}>ú</button>
+          <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
+        </div>
 
+        <form className='answerForm' onSubmit={handleSubmit}>
+          <input
+            type='text'
+            name='answerInput'
+            className='answerInput'
+            value={answers.answerInput}
+            onChange={handleChange}
+            ref={inputElement}
+          />
+          <button className='answerInput'>Submit!</button>
+        </form>
+      </div>
     </div>
   )
 }
