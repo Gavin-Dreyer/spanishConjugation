@@ -2,12 +2,18 @@
 import React, { useEffect, useState } from 'react'
 const IndicativePresent = (props) => {
     const [randVerb, setRandVerb] = useState()
+    const [randomize, setRandomize] = useState()
 
     useEffect(() => {
         //randomly selects a verb from an array of indictive present verbs
-        setRandVerb(props.indPresent[Math.floor(Math.random() * props.indPresent.length)]);
+        setRandVerb(props.indPresent[Math.floor(Math.random() * props.indPresent.length)])
 
     }, [props.totalQs])
+
+    useEffect(() => {
+        console.log(randVerb)
+        if (randVerb) viewPicker(randVerb)
+    }, [randVerb])
 
     props.setCurrentQ(randVerb)
 
@@ -15,9 +21,9 @@ const IndicativePresent = (props) => {
         return <h2>Loading...</h2>
     }
 
-    const viewPicker = () => {
-        let verbKey = Object.keys(randVerb)
-        let verbObject = Object.values(randVerb)
+    function viewPicker(verb) {
+        let verbKey = Object.keys(verb)
+        let verbObject = Object.values(verb)
 
         //this is to filter the values to only include the points of view and their conjugations
         verbKey = verbKey.filter((item, index) => index > 4)
@@ -43,12 +49,14 @@ const IndicativePresent = (props) => {
             }
         })
         pOVToString = pOVToString.join('')
-        return pOVToString
+        setRandomize(pOVToString)
     }
+
+    console.log(randomize)
 
     return (
         <div>
-            Conjugate {randVerb.spanishVerb} in {viewPicker()}
+            Conjugate {randVerb.spanishVerb} in {randomize}
         </div>
     )
 }
