@@ -6,6 +6,8 @@ import "./App.css";
 
 function App() {
   const [verbs, setVerbs] = useState();
+  const [currentQ, setCurrentQ] = useState()
+  const [totalQs, setTotalQs] = useState(0)
   const [answers, setAnswers] = useState({
     answerInput: ''
   })
@@ -23,6 +25,12 @@ function App() {
     return <h2>Loading...</h2>
   }
 
+  const checkAnswer = () => {
+    if (answers.answerInput === currentQ.firstPersonSingular) {
+      setTotalQs(totalQs + 1)
+    }
+  }
+
   const handleChange = e => {
     setAnswers({ [e.target.name]: e.target.value })
   }
@@ -30,15 +38,19 @@ function App() {
   const handleSubmit = e => {
     e.preventDefault()
     setAnswers({ answerInput: '' })
+    checkAnswer()
   }
 
+  //filters to seperate the mood/tense to break up the questions into difficulty
   const indicative = verbs.filter(item => item.mood === 'Indicativo')
   const indPresent = indicative.filter(item => item.tense === 'Presente')
 
+  console.log(currentQ, totalQs)
 
   return (
     <div className="App">
-      <IndicativePresent indPresent={indPresent} />
+      <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} />
+      {totalQs}
       <form className='answerForm' onSubmit={handleSubmit}>
         <input
           type='text'
@@ -51,7 +63,6 @@ function App() {
       </form>
     </div>
   )
-
 }
 
 export default App;

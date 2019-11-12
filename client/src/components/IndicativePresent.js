@@ -5,9 +5,11 @@ const IndicativePresent = (props) => {
 
     useEffect(() => {
         setRandVerb(props.indPresent[Math.floor(Math.random() * props.indPresent.length)]);
-    }, [])
 
-    console.log(randVerb)
+
+    }, [props.totalQs])
+
+    props.setCurrentQ(randVerb)
 
     if (!randVerb) {
         return <h2>Loading...</h2>
