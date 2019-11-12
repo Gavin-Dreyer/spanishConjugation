@@ -1,9 +1,11 @@
 // Level 1
+// no reflexive verbs, no irregular verbs
 import React, { useEffect, useState } from 'react'
 const IndicativePresent = (props) => {
     const [randVerb, setRandVerb] = useState()
     const [randomizedTense, setRandomizedTense] = useState()
 
+    //creates an object to check if verb is reflexive
     let checker = props.indPresent.map(item => {
         let obj = { reflexiveCheck: item.spanishVerb, spanVerb: item.spanishVerb, tense: item.firstPersonSingular }
 
@@ -16,12 +18,14 @@ const IndicativePresent = (props) => {
         return obj
     })
 
+    //if verb is reflexive, filter it out
     checker = checker.filter(item => {
         if (item.reflexiveCheck !== 'se') {
             return item
         }
     })
 
+    //create new array with filtered reflexive verbs
     let nonReflexiveVerbs = []
 
     props.indPresent.forEach(item => {
@@ -42,19 +46,17 @@ const IndicativePresent = (props) => {
         if (randVerb) viewPicker(randVerb)
     }, [randVerb])
 
-    props.setCurrentQ(randVerb)
-
     if (!randVerb) {
         return <h2>Loading...</h2>
     }
 
     function viewPicker(verb) {
         let verbKey = Object.keys(verb)
-        let verbObject = Object.values(verb)
+        let verbValues = Object.values(verb)
 
         //this is to filter the values to only include the points of view and their conjugations
         verbKey = verbKey.filter((item, index) => index > 4)
-        verbObject = verbObject.filter((item, index) => index > 4)
+        verbValues = verbValues.filter((item, index) => index > 4)
 
         let randomizer = Math.floor(Math.random() * verbKey.length)
 
@@ -77,6 +79,7 @@ const IndicativePresent = (props) => {
         })
         pOVToString = pOVToString.join('')
         setRandomizedTense(pOVToString)
+        props.setCurrentQ(verbValues[randomizer])
     }
 
     return (

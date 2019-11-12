@@ -26,7 +26,7 @@ function App() {
   }
 
   const checkAnswer = () => {
-    if (answers.answerInput === currentQ.firstPersonSingular) {
+    if (answers.answerInput === currentQ) {
       setTotalQs(totalQs + 1)
     }
   }
