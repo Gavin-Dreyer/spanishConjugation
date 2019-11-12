@@ -4,9 +4,37 @@ const IndicativePresent = (props) => {
     const [randVerb, setRandVerb] = useState()
     const [randomizedTense, setRandomizedTense] = useState()
 
+    let checker = props.indPresent.map(item => {
+        let obj = { reflexiveCheck: item.spanishVerb, spanVerb: item.spanishVerb, tense: item.firstPersonSingular }
+
+        obj.reflexiveCheck = obj.reflexiveCheck.split('')
+
+        obj.reflexiveCheck = obj.reflexiveCheck.slice(obj.reflexiveCheck.length - 2, obj.reflexiveCheck.length)
+
+        obj.reflexiveCheck = obj.reflexiveCheck.join('')
+
+        return obj
+    })
+
+    checker = checker.filter(item => {
+        if (item.reflexiveCheck !== 'se') {
+            return item
+        }
+    })
+
+    let nonReflexiveVerbs = []
+
+    props.indPresent.forEach(item => {
+        for (let i = 0; i < checker.length; i++) {
+            if (item.spanishVerb === checker[i].spanVerb) {
+                nonReflexiveVerbs = [...nonReflexiveVerbs, item]
+            }
+        }
+    })
+
     useEffect(() => {
         //randomly selects a verb from an array of indictive present verbs
-        setRandVerb(props.indPresent[Math.floor(Math.random() * props.indPresent.length)])
+        setRandVerb(nonReflexiveVerbs[Math.floor(Math.random() * nonReflexiveVerbs.length)])
 
     }, [props.totalQs])
 

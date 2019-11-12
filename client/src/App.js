@@ -45,7 +45,7 @@ function App() {
   const indicative = verbs.filter(item => item.mood === 'Indicativo')
   const indPresent = indicative.filter(item => item.tense === 'Presente')
 
-  // console.log(currentQ)
+
 
   return (
     <div className="App">
