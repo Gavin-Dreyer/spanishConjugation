@@ -7,6 +7,7 @@ import "./App.css";
 function App() {
   const inputElement = useRef(null)
 
+  const [answerInput, setAnswerInput] = useState('answerInput')
   const [verbs, setVerbs] = useState();
   const [currentQ, setCurrentQ] = useState()
   const [totalQs, setTotalQs] = useState(0)
@@ -31,8 +32,17 @@ function App() {
   const checkAnswer = () => {
     if (answers.answerInput === currentQ) {
       setTotalQs(totalQs + 1)
+      setAnswerInput(answerInput + 'Correct')
+    } else {
+      setAnswerInput(answerInput + 'Incorrect')
     }
+
+    setTimeout(() => {
+      setAnswerInput('answerInput')
+    }, 1000)
   }
+
+  console.log(answerInput)
 
   const handleChange = e => {
     setAnswers({ [e.target.name]: e.target.value })
@@ -83,21 +93,22 @@ function App() {
           <button className="tildeButton" onClick={() => tildes('á')}>á</button>
           <button className="tildeButton" onClick={() => tildes('é')}>é</button>
           <button className="tildeButton" onClick={() => tildes('í')}>í</button>
+          <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
           <button className="tildeButton" onClick={() => tildes('ó')}>ó</button>
           <button className="tildeButton" onClick={() => tildes('ú')}>ú</button>
-          <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
+
         </div>
 
         <form className='answerForm' onSubmit={handleSubmit}>
           <input
             type='text'
             name='answerInput'
-            className='answerInput'
+            className={`${answerInput}`}
             value={answers.answerInput}
             onChange={handleChange}
             ref={inputElement}
           />
-          <button className='answerInput'>Submit!</button>
+          <button className='answerInputButton'>Submit!</button>
         </form>
       </div>
     </div>

@@ -26,7 +26,6 @@ const IndicativePresent = (props) => {
         }
     })
 
-
     //create new array with filtered reflexive verbs
     let nonReflexiveVerbs = []
 

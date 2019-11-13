@@ -35,6 +35,35 @@
 .answerInput {
   margin: .5rem;
   font-size: 2rem;
+  border-radius: 5px;
+}
+
+.answerInput[type=text]:focus {
+  outline: none;
+  box-shadow: 1px 2px 3px black;
+}
+
+.answerInputCorrect {
+  margin: .5rem;
+  font-size: 2rem;
+  border-radius: 5px;
+  border: 2px solid #32CD32;
+  outline: none;
+  box-shadow: 3px 2px 3px #32CD32;
+}
+
+.answerInputIncorrect {
+  margin: .5rem;
+  font-size: 2rem;
+  border-radius: 5px;
+  border: 2px solid #cd3232;
+  outline: none;
+  box-shadow: 3px 2px 3px #cd3232;
+}
+
+.answerInputButton {
+  margin: .5rem;
+  font-size: 2rem;
 }
 
 .tildeButton {
