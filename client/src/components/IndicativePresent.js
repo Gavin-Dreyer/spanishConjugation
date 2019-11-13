@@ -18,12 +18,14 @@ const IndicativePresent = (props) => {
         return obj
     })
 
+
     //if verb is reflexive, filter it out
     checker = checker.filter(item => {
         if (item.reflexiveCheck !== 'se') {
             return item
         }
     })
+
 
     //create new array with filtered reflexive verbs
     let nonReflexiveVerbs = []
@@ -36,9 +38,22 @@ const IndicativePresent = (props) => {
         }
     })
 
+    //filters out the irregular verbs
+    let nonIrregularVerbs = nonReflexiveVerbs.filter(item => {
+        let splitArr = item.spanishVerb.split('')
+        let splitArr2 = item.firstPersonSingular.split('')
+        splitArr = splitArr.slice(0, splitArr.length - 2)
+        splitArr2 = splitArr2.slice(0, splitArr2.length - 1)
+        splitArr = splitArr.join('')
+        splitArr2 = splitArr2.join('')
+        if (splitArr === splitArr2) {
+            return item
+        }
+    })
+
     useEffect(() => {
-        //randomly selects a verb from an array of indictive present verbs
-        setRandVerb(nonReflexiveVerbs[Math.floor(Math.random() * nonReflexiveVerbs.length)])
+        //randomly selects a verb from an array of indictive present verbs that are neither irregular nor reflexive 
+        setRandVerb(nonIrregularVerbs[Math.floor(Math.random() * nonIrregularVerbs.length)])
 
     }, [props.totalQs])
 
