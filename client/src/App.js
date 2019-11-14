@@ -2,11 +2,13 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import IndicativePresent from './components/IndicativePresent'
+import VerbTypeSelector from './components/VerbTypeSelector'
 import "./App.css";
 
 function App() {
   const inputElement = useRef(null)
 
+  const [verbType, setVerbType] = useState([])
   const [answerInput, setAnswerInput] = useState('answerInput')
   const [verbs, setVerbs] = useState();
   const [currentQ, setCurrentQ] = useState()
@@ -42,7 +44,7 @@ function App() {
     }, 1000)
   }
 
-  console.log(answerInput)
+  console.log(verbType)
 
   const handleChange = e => {
     setAnswers({ [e.target.name]: e.target.value })
@@ -82,7 +84,7 @@ function App() {
 
   return (
     <div className="App">
-      <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} />
+      <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} verbType={verbType} />
 
       <div className="totalQs">
         {totalQs}
@@ -111,6 +113,8 @@ function App() {
           <button className='answerInputButton'>Submit!</button>
         </form>
       </div>
+
+      <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} />
     </div>
   )
 }
