@@ -1,135 +1,172 @@
 // Level 1
 // no reflexive verbs, no irregular verbs
-import React, { useEffect, useState } from 'react'
-const IndicativePresent = (props) => {
-    const [randVerb, setRandVerb] = useState()
-    const [randomizedTense, setRandomizedTense] = useState()
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
-    //creates an object to check if verb is reflexive
-    let checker = props.indPresent.map(item => {
-        let obj = { reflexiveCheck: item.spanishVerb, spanVerb: item.spanishVerb, tense: item.firstPersonSingular }
+import { fetchVerbs } from '../actions';
+const IndicativePresent = props => {
+	const indicative = props.verbs.filter(item => item.mood === 'Indicativo');
+	const indPresent = indicative.filter(item => item.tense === 'Presente');
 
-        obj.reflexiveCheck = obj.reflexiveCheck.split('')
+	const [randVerb, setRandVerb] = useState();
+	const [randomizedTense, setRandomizedTense] = useState();
 
-        obj.reflexiveCheck = obj.reflexiveCheck.slice(obj.reflexiveCheck.length - 2, obj.reflexiveCheck.length)
+	useEffect(() => {
+		props.fetchVerbs();
+	}, []);
 
-        obj.reflexiveCheck = obj.reflexiveCheck.join('')
+	useEffect(() => {});
 
-        return obj
-    })
+	console.log(indPresent);
+	console.log(randVerb);
+	//creates an object to check if verb is reflexive
+	let checker = indPresent.map(item => {
+		let obj = {
+			reflexiveCheck: item.spanishVerb,
+			spanVerb: item.spanishVerb,
+			tense: item.firstPersonSingular
+		};
 
+		obj.reflexiveCheck = obj.reflexiveCheck.split('');
 
-    //if verb is reflexive, filter it out
-    checker = checker.filter(item => {
-        if (item.reflexiveCheck !== 'se') {
-            return item
-        }
-    })
+		obj.reflexiveCheck = obj.reflexiveCheck.slice(
+			obj.reflexiveCheck.length - 2,
+			obj.reflexiveCheck.length
+		);
 
-    //create new array with reflexive verbs filtered out
-    let nonReflexiveVerbs = []
+		obj.reflexiveCheck = obj.reflexiveCheck.join('');
 
-    props.indPresent.forEach(item => {
-        for (let i = 0; i < checker.length; i++) {
-            if (item.spanishVerb === checker[i].spanVerb) {
-                nonReflexiveVerbs = [...nonReflexiveVerbs, item]
-            }
-        }
-    })
+		return obj;
+	});
 
-    // props.indPresent.filter((item, index) => {
-    //     if (item.spanishVerb.slice(item.spanishVerb.length - 2, item.spanishVerb.length) !== 'se') {
-    //         return item
-    //     }
-    // })
+	//if verb is reflexive, filter it out
+	checker = checker.filter(item => {
+		if (item.reflexiveCheck !== 'se') {
+			return item;
+		}
+	});
 
-    // filters out reflexive verbs
-    let nonIrregularVerbs = props.indPresent.filter(item => {
-        let splitArr = item.spanishVerb.split('')
-        let splitArr2 = item.firstPersonSingular.split('')
-        splitArr = splitArr.slice(0, splitArr.length - 2)
-        splitArr2 = splitArr2.slice(0, splitArr2.length - 1)
-        splitArr = splitArr.join('')
-        splitArr2 = splitArr2.join('')
-        if (splitArr === splitArr2 || item.spanishVerb.slice(item.spanishVerb.length - 2, item.spanishVerb.length) === 'se') {
-            return item
-        }
-    })
+	//create new array with reflexive verbs filtered out
+	let nonReflexiveVerbs = [];
 
+	indPresent.forEach(item => {
+		for (let i = 0; i < checker.length; i++) {
+			if (item.spanishVerb === checker[i].spanVerb) {
+				nonReflexiveVerbs = [...nonReflexiveVerbs, item];
+			}
+		}
+	});
 
-    console.log(nonIrregularVerbs)
+	// indPresent.filter((item, index) => {
+	//     if (item.spanishVerb.slice(item.spanishVerb.length - 2, item.spanishVerb.length) !== 'se') {
+	//         return item
+	//     }
+	// })
 
-    //filters out the irregular verbs from the array that has already been filtered for reflexive
-    let nonIrregularReflexive = nonReflexiveVerbs.filter(item => {
-        let splitArr = item.spanishVerb.split('')
-        let splitArr2 = item.firstPersonSingular.split('')
-        splitArr = splitArr.slice(0, splitArr.length - 2)
-        splitArr2 = splitArr2.slice(0, splitArr2.length - 1)
-        splitArr = splitArr.join('')
-        splitArr2 = splitArr2.join('')
-        if (splitArr === splitArr2) {
-            return item
-        }
-    })
+	// filters out reflexive verbs
+	let nonIrregularVerbs = indPresent.filter(item => {
+		let splitArr = item.spanishVerb.split('');
+		let splitArr2 = item.firstPersonSingular.split('');
+		splitArr = splitArr.slice(0, splitArr.length - 2);
+		splitArr2 = splitArr2.slice(0, splitArr2.length - 1);
+		splitArr = splitArr.join('');
+		splitArr2 = splitArr2.join('');
+		if (
+			splitArr === splitArr2 ||
+			item.spanishVerb.slice(
+				item.spanishVerb.length - 2,
+				item.spanishVerb.length
+			) === 'se'
+		) {
+			return item;
+		}
+	});
 
-    useEffect(() => {
-        if (props.verbType.includes('irr') && props.verbType.includes('ref')) {
-            setRandVerb(props.indPresent[Math.floor(Math.random() * props.indPresent.length)])
-        } else if (props.verbType.includes('irr')) {
-            setRandVerb(nonReflexiveVerbs[Math.floor(Math.random() * nonReflexiveVerbs.length)])
-        } else if (props.verbType.includes('ref')) {
-            setRandVerb(nonIrregularVerbs[Math.floor(Math.random() * nonIrregularVerbs.length)])
-        } else {
-            //randomly selects a verb from an array of indictive present verbs that are neither irregular nor reflexive 
-            setRandVerb(nonIrregularReflexive[Math.floor(Math.random() * nonIrregularReflexive.length)])
-        }
-    }, [props.totalQs])
+	//filters out the irregular verbs from the array that has already been filtered for reflexive
+	let nonIrregularReflexive = nonReflexiveVerbs.filter(item => {
+		let splitArr = item.spanishVerb.split('');
+		let splitArr2 = item.firstPersonSingular.split('');
+		splitArr = splitArr.slice(0, splitArr.length - 2);
+		splitArr2 = splitArr2.slice(0, splitArr2.length - 1);
+		splitArr = splitArr.join('');
+		splitArr2 = splitArr2.join('');
+		if (splitArr === splitArr2) {
+			return item;
+		}
+	});
 
-    useEffect(() => {
-        if (randVerb) viewPicker(randVerb)
-    }, [randVerb])
+	useEffect(() => {
+		if (props.verbType.includes('irr') && props.verbType.includes('ref')) {
+			setRandVerb(indPresent[Math.floor(Math.random() * indPresent.length)]);
+		} else if (props.verbType.includes('irr')) {
+			setRandVerb(
+				nonReflexiveVerbs[Math.floor(Math.random() * nonReflexiveVerbs.length)]
+			);
+		} else if (props.verbType.includes('ref')) {
+			setRandVerb(
+				nonIrregularVerbs[Math.floor(Math.random() * nonIrregularVerbs.length)]
+			);
+		} else {
+			//randomly selects a verb from an array of indictive present verbs that are neither irregular nor reflexive
+			setRandVerb(
+				nonIrregularReflexive[
+					Math.floor(Math.random() * nonIrregularReflexive.length)
+				]
+			);
+		}
+	}, [props.totalQs]);
 
-    if (!randVerb) {
-        return <h2>Loading...</h2>
-    }
+	useEffect(() => {
+		if (randVerb) viewPicker(randVerb);
+	}, [randVerb]);
 
-    function viewPicker(verb) {
-        let verbKey = Object.keys(verb)
-        let verbValues = Object.values(verb)
+	if (!randVerb) {
+		return <h2>Loading...</h2>;
+	}
 
-        //this is to filter the values to only include the points of view and their conjugations
-        verbKey = verbKey.filter((item, index) => index > 4)
-        verbValues = verbValues.filter((item, index) => index > 4)
+	function viewPicker(verb) {
+		let verbKey = Object.keys(verb);
+		let verbValues = Object.values(verb);
 
-        let randomizer = Math.floor(Math.random() * verbKey.length)
+		//this is to filter the values to only include the points of view and their conjugations
+		verbKey = verbKey.filter((item, index) => index > 4);
+		verbValues = verbValues.filter((item, index) => index > 4);
 
-        //this converts the key asscoiated with the value to a normal string format
-        let pOVToString = verbKey[randomizer]
-        pOVToString = pOVToString.split('')
-        pOVToString = pOVToString.map(item => {
-            if (item === item.toUpperCase()) {
-                return ' ' + item
-            } else {
-                return item
-            }
-        })
-        pOVToString = pOVToString.map((item, index) => {
-            if (index === 0) {
-                return item.toUpperCase()
-            } else {
-                return item
-            }
-        })
-        pOVToString = pOVToString.join('')
-        setRandomizedTense(pOVToString)
-        props.setCurrentQ(verbValues[randomizer])
-    }
+		let randomizer = Math.floor(Math.random() * verbKey.length);
 
-    return (
-        <div className="question">
-            Conjugate {randVerb.spanishVerb} in {randomizedTense}
-        </div>
-    )
-}
+		//this converts the key asscoiated with the value to a normal string format
+		let pOVToString = verbKey[randomizer];
+		pOVToString = pOVToString.split('');
+		pOVToString = pOVToString.map(item => {
+			if (item === item.toUpperCase()) {
+				return ' ' + item;
+			} else {
+				return item;
+			}
+		});
+		pOVToString = pOVToString.map((item, index) => {
+			if (index === 0) {
+				return item.toUpperCase();
+			} else {
+				return item;
+			}
+		});
+		pOVToString = pOVToString.join('');
+		setRandomizedTense(pOVToString);
+		props.setCurrentQ(verbValues[randomizer]);
+	}
 
-export default IndicativePresent
+	return (
+		<div className="question">
+			Conjugate {randVerb.spanishVerb} in {randomizedTense}
+		</div>
+	);
+};
+
+const mapStateToProps = state => {
+	return {
+		verbs: state.verbs,
+		isFetching: state.isFetching
+	};
+};
+export default connect(mapStateToProps, { fetchVerbs })(IndicativePresent);

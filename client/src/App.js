@@ -1,122 +1,145 @@
-import React, { useEffect, useState, useRef } from "react";
-import axios from "axios";
+import React, { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
-import IndicativePresent from './components/IndicativePresent'
-import VerbTypeSelector from './components/VerbTypeSelector'
-import "./App.css";
+import { fetchVerbs } from './actions';
 
-function App() {
-  const inputElement = useRef(null)
+import IndicativePresent from './components/IndicativePresent';
+import VerbTypeSelector from './components/VerbTypeSelector';
+import './App.css';
 
-  const [verbType, setVerbType] = useState([])
-  const [answerInput, setAnswerInput] = useState('answerInput')
-  const [verbs, setVerbs] = useState();
-  const [currentQ, setCurrentQ] = useState()
-  const [totalQs, setTotalQs] = useState(0)
-  const [answers, setAnswers] = useState({
-    answerInput: ''
-  })
+function App(props) {
+	const inputElement = useRef(null);
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5555`)
-      .then(res => {
-        setVerbs(res.data);
-      })
-      .catch(err => console.log(err));
-  }, []);
+	const [verbType, setVerbType] = useState([]);
+	const [answerInput, setAnswerInput] = useState('answerInput');
+	const [verbs, setVerbs] = useState();
+	const [currentQ, setCurrentQ] = useState();
+	const [totalQs, setTotalQs] = useState(0);
+	const [answers, setAnswers] = useState({
+		answerInput: ''
+	});
 
-  if (!verbs) {
-    return <h2>Loading...</h2>
-  }
+	useEffect(() => {
+		// axios
+		// 	.get(`http://localhost:5555`)
+		// 	.then(res => {
+		// 		setVerbs(res.data);
+		// 	})
+		// 	.catch(err => console.log(err));
+		props.fetchVerbs();
+	}, []);
 
-  console.log(currentQ)
-  const checkAnswer = () => {
-    if (answers.answerInput === currentQ) {
-      setTotalQs(totalQs + 1)
-      setAnswerInput(answerInput + 'Correct')
-    } else {
-      setAnswerInput(answerInput + 'Incorrect')
-    }
+	useEffect(() => {
+		setVerbs(props.verbs);
+	});
 
-    setTimeout(() => {
-      setAnswerInput('answerInput')
-    }, 1000)
-  }
+	if (!verbs) {
+		return <h2>Loading...</h2>;
+	}
 
-  console.log(verbType)
+	console.log(currentQ);
+	const checkAnswer = () => {
+		if (answers.answerInput === currentQ) {
+			setTotalQs(totalQs + 1);
+			setAnswerInput(answerInput + 'Correct');
+		} else {
+			setAnswerInput(answerInput + 'Incorrect');
+		}
 
-  const handleChange = e => {
-    setAnswers({ [e.target.name]: e.target.value })
-  }
+		setTimeout(() => {
+			setAnswerInput('answerInput');
+		}, 1000);
+	};
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    setAnswers({ answerInput: '' })
-    checkAnswer()
-  }
+	const handleChange = e => {
+		setAnswers({ [e.target.name]: e.target.value });
+	};
 
-  //filters to seperate the mood/tense to break up the questions into difficulty
-  const indicative = verbs.filter(item => item.mood === 'Indicativo')
-  const indPresent = indicative.filter(item => item.tense === 'Presente')
+	const handleSubmit = e => {
+		e.preventDefault();
+		setAnswers({ answerInput: '' });
+		checkAnswer();
+	};
 
-  function tildes(letter) {
-    if (letter === 'á') {
-      setAnswers({ answerInput: answers.answerInput + 'á' })
-    }
-    if (letter === 'é') {
-      setAnswers({ answerInput: answers.answerInput + 'é' })
-    }
-    if (letter === 'í') {
-      setAnswers({ answerInput: answers.answerInput + 'í' })
-    }
-    if (letter === 'ó') {
-      setAnswers({ answerInput: answers.answerInput + 'ó' })
-    }
-    if (letter === 'ú') {
-      setAnswers({ answerInput: answers.answerInput + 'ú' })
-    }
-    if (letter === 'ñ') {
-      setAnswers({ answerInput: answers.answerInput + 'ñ' })
-    }
-    inputElement.current.focus()
-  }
+	//filters to seperate the mood/tense to break up the questions into difficulty
 
-  return (
-    <div className="App">
-      <IndicativePresent setCurrentQ={setCurrentQ} totalQs={totalQs} indPresent={indPresent} verbType={verbType} />
+	function tildes(letter) {
+		if (letter === 'á') {
+			setAnswers({ answerInput: answers.answerInput + 'á' });
+		}
+		if (letter === 'é') {
+			setAnswers({ answerInput: answers.answerInput + 'é' });
+		}
+		if (letter === 'í') {
+			setAnswers({ answerInput: answers.answerInput + 'í' });
+		}
+		if (letter === 'ó') {
+			setAnswers({ answerInput: answers.answerInput + 'ó' });
+		}
+		if (letter === 'ú') {
+			setAnswers({ answerInput: answers.answerInput + 'ú' });
+		}
+		if (letter === 'ñ') {
+			setAnswers({ answerInput: answers.answerInput + 'ñ' });
+		}
+		inputElement.current.focus();
+	}
 
-      <div className="totalQs">
-        {totalQs}
-      </div>
+	return (
+		<div className="App">
+			<IndicativePresent
+				setCurrentQ={setCurrentQ}
+				totalQs={totalQs}
+				verbType={verbType}
+			/>
 
-      <div className="answerFormCon">
-        <div className="tildeButtonCon">
-          <button className="tildeButton" onClick={() => tildes('á')}>á</button>
-          <button className="tildeButton" onClick={() => tildes('é')}>é</button>
-          <button className="tildeButton" onClick={() => tildes('í')}>í</button>
-          <button className="tildeButton" onClick={() => tildes('ñ')}>ñ</button>
-          <button className="tildeButton" onClick={() => tildes('ó')}>ó</button>
-          <button className="tildeButton" onClick={() => tildes('ú')}>ú</button>
+			<div className="totalQs">{totalQs}</div>
 
-        </div>
+			<div className="answerFormCon">
+				<div className="tildeButtonCon">
+					<button className="tildeButton" onClick={() => tildes('á')}>
+						á
+					</button>
+					<button className="tildeButton" onClick={() => tildes('é')}>
+						é
+					</button>
+					<button className="tildeButton" onClick={() => tildes('í')}>
+						í
+					</button>
+					<button className="tildeButton" onClick={() => tildes('ñ')}>
+						ñ
+					</button>
+					<button className="tildeButton" onClick={() => tildes('ó')}>
+						ó
+					</button>
+					<button className="tildeButton" onClick={() => tildes('ú')}>
+						ú
+					</button>
+				</div>
 
-        <form className='answerForm' onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='answerInput'
-            className={`${answerInput}`}
-            value={answers.answerInput}
-            onChange={handleChange}
-            ref={inputElement}
-          />
-          <button className='answerInputButton'>Submit!</button>
-        </form>
-      </div>
+				<form className="answerForm" onSubmit={handleSubmit}>
+					<input
+						type="text"
+						name="answerInput"
+						className={`${answerInput}`}
+						value={answers.answerInput}
+						onChange={handleChange}
+						ref={inputElement}
+					/>
+					<button className="answerInputButton">Submit!</button>
+				</form>
+			</div>
 
-      <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} />
-    </div>
-  )
+			<VerbTypeSelector verbType={verbType} setVerbType={setVerbType} />
+		</div>
+	);
 }
 
-export default App;
+const mapStateToProps = state => {
+	return {
+		verbs: state.verbs,
+		isFetching: state.isFetching
+	};
+};
+export default connect(mapStateToProps, { fetchVerbs })(App);
