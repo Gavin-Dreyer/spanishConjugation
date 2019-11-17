@@ -5,20 +5,16 @@ import { connect } from 'react-redux';
 
 import { fetchVerbs } from '../actions';
 const IndicativePresent = props => {
+	useEffect(() => {
+		props.fetchVerbs();
+	}, []);
+
 	const indicative = props.verbs.filter(item => item.mood === 'Indicativo');
 	const indPresent = indicative.filter(item => item.tense === 'Presente');
 
 	const [randVerb, setRandVerb] = useState();
 	const [randomizedTense, setRandomizedTense] = useState();
 
-	useEffect(() => {
-		props.fetchVerbs();
-	}, []);
-
-	useEffect(() => {});
-
-	console.log(indPresent);
-	console.log(randVerb);
 	//creates an object to check if verb is reflexive
 	let checker = indPresent.map(item => {
 		let obj = {
@@ -95,7 +91,11 @@ const IndicativePresent = props => {
 		}
 	});
 
+	// console.log(indPresent);
+	// console.log(randVerb);
 	useEffect(() => {
+		console.log(indPresent);
+		console.log(nonReflexiveVerbs);
 		if (props.verbType.includes('irr') && props.verbType.includes('ref')) {
 			setRandVerb(indPresent[Math.floor(Math.random() * indPresent.length)]);
 		} else if (props.verbType.includes('irr')) {
@@ -114,7 +114,7 @@ const IndicativePresent = props => {
 				]
 			);
 		}
-	}, [props.totalQs]);
+	}, [props.totalQs || props.isFetching]);
 
 	useEffect(() => {
 		if (randVerb) viewPicker(randVerb);
