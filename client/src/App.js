@@ -21,12 +21,6 @@ function App(props) {
 	});
 
 	useEffect(() => {
-		// axios
-		// 	.get(`http://localhost:5555`)
-		// 	.then(res => {
-		// 		setVerbs(res.data);
-		// 	})
-		// 	.catch(err => console.log(err));
 		props.fetchVerbs();
 	}, []);
 
@@ -61,8 +55,6 @@ function App(props) {
 		setAnswers({ answerInput: '' });
 		checkAnswer();
 	};
-
-	//filters to seperate the mood/tense to break up the questions into difficulty
 
 	function tildes(letter) {
 		if (letter === 'á') {

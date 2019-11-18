@@ -9,6 +9,7 @@ const IndicativePresent = props => {
 		props.fetchVerbs();
 	}, []);
 
+	//filters to seperate the mood/tense to break up the questions into difficulty
 	const indicative = props.verbs.filter(item => item.mood === 'Indicativo');
 	const indPresent = indicative.filter(item => item.tense === 'Presente');
 
@@ -91,11 +92,7 @@ const IndicativePresent = props => {
 		}
 	});
 
-	// console.log(indPresent);
-	// console.log(randVerb);
 	useEffect(() => {
-		console.log(indPresent);
-		console.log(nonReflexiveVerbs);
 		if (props.verbType.includes('irr') && props.verbType.includes('ref')) {
 			setRandVerb(indPresent[Math.floor(Math.random() * indPresent.length)]);
 		} else if (props.verbType.includes('irr')) {

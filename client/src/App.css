@@ -1,81 +1,101 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
+	height: 40vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #09d3ac;
+	color: #09d3ac;
 }
 
 .answerFormCon {
-  margin-top: 3rem;
+	margin-top: 3rem;
 }
 
 .answerForm {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin: 0 auto 0 auto;
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	margin: 0 auto 0 auto;
 }
 
 .answerInput {
-  margin: .5rem;
-  font-size: 2rem;
-  border-radius: 5px;
+	margin: 0.5rem;
+	font-size: 2rem;
+	border-radius: 5px;
 }
 
-.answerInput[type=text]:focus {
-  outline: none;
-  box-shadow: 1px 2px 3px black;
+.answerInput[type='text']:focus {
+	outline: none;
+	box-shadow: 1px 2px 3px black;
 }
 
 .answerInputCorrect {
-  margin: .5rem;
-  font-size: 2rem;
-  border-radius: 5px;
-  border: 2px solid #32CD32;
-  outline: none;
-  box-shadow: 3px 2px 3px #32CD32;
+	margin: 0.5rem;
+	font-size: 2rem;
+	border-radius: 5px;
+	border: 2px solid #32cd32;
+	outline: none;
+	box-shadow: 3px 2px 3px #32cd32;
 }
 
 .answerInputIncorrect {
-  margin: .5rem;
-  font-size: 2rem;
-  border-radius: 5px;
-  border: 2px solid #cd3232;
-  outline: none;
-  box-shadow: 3px 2px 3px #cd3232;
+	margin: 0.5rem;
+	font-size: 2rem;
+	border-radius: 5px;
+	border: 2px solid #cd3232;
+	outline: none;
+	box-shadow: 3px 2px 3px #cd3232;
 }
 
 .answerInputButton {
-  margin: .5rem;
-  font-size: 2rem;
+	margin: 0.5rem;
+	font-size: 2rem;
 }
 
 .tildeButton {
-  width: 50px;
-  padding: .5rem;
-  margin: .3rem;
-  font-size: 2rem;
+	width: 50px;
+	padding: 0.5rem;
+	margin: 0.3rem;
+	font-size: 2rem;
 }
 
 .totalQs {
-  font-size: 2rem;
+	font-size: 2rem;
 }
 .question {
-  font-size: 3rem;
+	font-size: 3rem;
+}
+
+.selectedRef {
+	border: 2px solid red;
+}
+
+.selectedIrr {
+	border: 2px solid blue;
+}
+
+.selectedIrr:focus {
+	outline: none;
+}
+
+.selectedRef:focus {
+	outline: none;
+}
+
+.selBut:focus {
+	outline: none;
 }
