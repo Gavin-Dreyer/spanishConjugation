@@ -8,7 +8,7 @@ import { fetchVerbs } from './actions';
 
 import IndicativePresent from './components/IndicativePresent';
 import VerbTypeSelector from './components/VerbTypeSelector';
-import CheckConjugation from './components/CheckConjugation';
+import CheckConjugation from './components/CheckConjugation/CheckConjugation';
 import './App.css';
 
 const client = new ApolloClient({

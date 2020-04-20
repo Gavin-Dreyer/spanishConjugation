@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
 import { useLazyQuery } from '@apollo/react-hooks';
+import SimpleIndicative from './SimpleIndicative';
+import SimpleSubjunctive from './SimpleSubjunctive';
 
 const GET_VERB = gql`
 	query Verb($verb: String!) {
@@ -64,37 +66,8 @@ const CheckConjugation = props => {
 						<p>Verb: {currentVerb[0].spanishVerb}</p>
 						<p>Definition: {currentVerb[0].englishDefinition}</p>
 					</div>
-					<div className="conjugationsCon">
-						<div className="conjugations">
-							<p>yo</p>
-							<p>tú</p>
-							<p>él/ella/Ud.</p>
-							<p>nosotros</p>
-							<p>vosotros</p>
-							<p>ellos/ellas/Uds.</p>
-						</div>
-						{currentVerb.map((item, idx) => {
-							if (
-								item.mood === 'Indicativo' &&
-								(item.tense === 'Presente' ||
-									item.tense === 'Pretérito' ||
-									item.tense === 'Imperfecto' ||
-									item.tense === 'Futuro' ||
-									item.tense === 'Condicional')
-							) {
-								return (
-									<div className="conjugations" key={idx}>
-										<p>{item.firstPersonSingular}</p>
-										<p>{item.secondPersonSingular}</p>
-										<p>{item.thirdPersonSingular}</p>
-										<p>{item.firstPersonPlural}</p>
-										<p>{item.secondPersonPlural}</p>
-										<p>{item.thirdPersonPlural}</p>
-									</div>
-								);
-							}
-						})}
-					</div>
+					<SimpleIndicative currentVerb={currentVerb} />
+					<SimpleSubjunctive currentVerb={currentVerb} />
 				</div>
 			) : (
 				''
