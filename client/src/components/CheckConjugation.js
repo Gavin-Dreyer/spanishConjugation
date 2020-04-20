@@ -1,6 +1,25 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { gql } from 'apollo-boost';
+import { graphql } from 'react-apollo';
 
-const CheckConjugation = () => {
+const getVerbQuery = gql`
+	{
+		verbList(verb: "abandonar") {
+			spanishVerb
+			tense
+			mood
+			englishDefinition
+			firstPersonSingular
+			secondPersonSingular
+			thirdPersonSingular
+			firstPersonPlural
+			secondPersonPlural
+			thirdPersonPlural
+		}
+	}
+`;
+
+const CheckConjugation = props => {
 	const [verb, setVerb] = useState({
 		verbInput: ''
 	});
@@ -11,9 +30,11 @@ const CheckConjugation = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
+		// dispatchQuery(verb.verbInput);
 		setVerb({ verbInput: '' });
 	};
 
+	console.log(props);
 	return (
 		<div>
 			<form className="answerForm" onSubmit={handleSubmit}>
@@ -29,4 +50,4 @@ const CheckConjugation = () => {
 	);
 };
 
-export default CheckConjugation;
+export default graphql(getVerbQuery)(CheckConjugation);

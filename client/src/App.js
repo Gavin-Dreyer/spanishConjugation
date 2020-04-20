@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import ApolloClient from 'apollo-boost';
 import { connect } from 'react-redux';
+import { ApolloProvider } from '@apollo/react-hooks';
 
 import { fetchVerbs } from './actions';
 
@@ -8,6 +10,10 @@ import IndicativePresent from './components/IndicativePresent';
 import VerbTypeSelector from './components/VerbTypeSelector';
 import CheckConjugation from './components/CheckConjugation';
 import './App.css';
+
+const client = new ApolloClient({
+	uri: 'http://localhost:5555/graphql'
+});
 
 function App(props) {
 	const inputElement = useRef(null);
@@ -79,54 +85,56 @@ function App(props) {
 	}
 
 	return (
-		<div className="App">
-			{/* <IndicativePresent
-				setCurrentQ={setCurrentQ}
-				totalQs={totalQs}
-				verbType={verbType}
-			/> */}
+		<ApolloProvider client={client}>
+			<div className="App">
+				{/* <IndicativePresent
+					setCurrentQ={setCurrentQ}
+					totalQs={totalQs}
+					verbType={verbType}
+				/> */}
 
-			<CheckConjugation />
+				<CheckConjugation />
 
-			{/* <div className="totalQs">{totalQs}</div> */}
+				{/* <div className="totalQs">{totalQs}</div> */}
 
-			{/* <div className="answerFormCon">
-				<div className="tildeButtonCon">
-					<button className="tildeButton" onClick={() => tildes('á')}>
-						á
-					</button>
-					<button className="tildeButton" onClick={() => tildes('é')}>
-						é
-					</button>
-					<button className="tildeButton" onClick={() => tildes('í')}>
-						í
-					</button>
-					<button className="tildeButton" onClick={() => tildes('ñ')}>
-						ñ
-					</button>
-					<button className="tildeButton" onClick={() => tildes('ó')}>
-						ó
-					</button>
-					<button className="tildeButton" onClick={() => tildes('ú')}>
-						ú
-					</button>
-				</div>
+				{/* <div className="answerFormCon">
+					<div className="tildeButtonCon">
+						<button className="tildeButton" onClick={() => tildes('á')}>
+							á
+						</button>
+						<button className="tildeButton" onClick={() => tildes('é')}>
+							é
+						</button>
+						<button className="tildeButton" onClick={() => tildes('í')}>
+							í
+						</button>
+						<button className="tildeButton" onClick={() => tildes('ñ')}>
+							ñ
+						</button>
+						<button className="tildeButton" onClick={() => tildes('ó')}>
+							ó
+						</button>
+						<button className="tildeButton" onClick={() => tildes('ú')}>
+							ú
+						</button>
+					</div>
 
-				<form className="answerForm" onSubmit={handleSubmit}>
-					<input
-						type="text"
-						name="answerInput"
-						className={`${answerInput}`}
-						value={answers.answerInput}
-						onChange={handleChange}
-						ref={inputElement}
-					/>
-					<button className="answerInputButton">Submit!</button>
-				</form>
-			</div> */}
+					<form className="answerForm" onSubmit={handleSubmit}>
+						<input
+							type="text"
+							name="answerInput"
+							className={`${answerInput}`}
+							value={answers.answerInput}
+							onChange={handleChange}
+							ref={inputElement}
+						/>
+						<button className="answerInputButton">Submit!</button>
+					</form>
+				</div> */}
 
-			{/* <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} /> */}
-		</div>
+				{/* <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} /> */}
+			</div>
+		</ApolloProvider>
 	);
 }
 
