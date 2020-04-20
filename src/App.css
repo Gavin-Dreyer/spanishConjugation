@@ -99,3 +99,18 @@
 .selBut:focus {
 	outline: none;
 }
+
+/* CheckConjugation */
+.conjugations {
+	border: 2px solid red;
+	width: 95%;
+	display: flex;
+	margin: auto;
+	justify-content: center;
+}
+/* .conjugations .title {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid red;
+	width: 20%;
+} */
