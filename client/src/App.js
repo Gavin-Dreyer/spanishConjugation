@@ -6,6 +6,7 @@ import { fetchVerbs } from './actions';
 
 import IndicativePresent from './components/IndicativePresent';
 import VerbTypeSelector from './components/VerbTypeSelector';
+import CheckConjugation from './components/CheckConjugation';
 import './App.css';
 
 function App(props) {
@@ -32,7 +33,6 @@ function App(props) {
 		return <h2>Loading...</h2>;
 	}
 
-	console.log(currentQ);
 	const checkAnswer = () => {
 		if (answers.answerInput === currentQ) {
 			setTotalQs(totalQs + 1);
@@ -80,15 +80,17 @@ function App(props) {
 
 	return (
 		<div className="App">
-			<IndicativePresent
+			{/* <IndicativePresent
 				setCurrentQ={setCurrentQ}
 				totalQs={totalQs}
 				verbType={verbType}
-			/>
+			/> */}
 
-			<div className="totalQs">{totalQs}</div>
+			<CheckConjugation />
 
-			<div className="answerFormCon">
+			{/* <div className="totalQs">{totalQs}</div> */}
+
+			{/* <div className="answerFormCon">
 				<div className="tildeButtonCon">
 					<button className="tildeButton" onClick={() => tildes('á')}>
 						á
@@ -121,9 +123,9 @@ function App(props) {
 					/>
 					<button className="answerInputButton">Submit!</button>
 				</form>
-			</div>
+			</div> */}
 
-			<VerbTypeSelector verbType={verbType} setVerbType={setVerbType} />
+			{/* <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} /> */}
 		</div>
 	);
 }
