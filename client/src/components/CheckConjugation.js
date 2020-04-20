@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { gql } from 'apollo-boost';
 import { graphql } from 'react-apollo';
+import { useLazyQuery } from '@apollo/react-hooks';
 
-const getVerbQuery = gql`
-	{
-		verbList(verb: "abandonar") {
+const GET_VERB = gql`
+	query Verb($verb: String!) {
+		verbList(verb: $verb) {
 			spanishVerb
 			tense
 			mood
@@ -20,28 +21,39 @@ const getVerbQuery = gql`
 `;
 
 const CheckConjugation = props => {
-	const [verb, setVerb] = useState({
-		verbInput: ''
+	const [currentVerb, setCurrentVerb] = useState();
+	const [verbInput, setVerbInput] = useState({
+		vInput: ''
 	});
 
+	const [getVerb, { loading, error, data }] = useLazyQuery(GET_VERB);
+
+	useEffect(() => {
+		if (data && data.verbList) {
+			setCurrentVerb(data.verbList);
+		}
+	}, [loading]);
+
 	const handleChange = e => {
-		setVerb({ [e.target.name]: e.target.value });
+		setVerbInput({ [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		// dispatchQuery(verb.verbInput);
-		setVerb({ verbInput: '' });
+		getVerb({ variables: { verb: `${verbInput.vInput}` } });
+		setVerbInput({ vInput: '' });
 	};
 
-	console.log(props);
+	if (loading) return 'Loading...';
+
+	console.log(currentVerb);
 	return (
 		<div>
 			<form className="answerForm" onSubmit={handleSubmit}>
 				<input
 					type="text"
-					name="verbInput"
-					value={verb.verbInput}
+					name="vInput"
+					value={verbInput.vInput}
 					onChange={handleChange}
 				/>
 				<button className="answerInputButton">Submit!</button>
@@ -50,4 +62,4 @@ const CheckConjugation = props => {
 	);
 };
 
-export default graphql(getVerbQuery)(CheckConjugation);
+export default CheckConjugation;
