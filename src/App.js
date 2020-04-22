@@ -87,17 +87,17 @@ function App(props) {
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
-				{/* <IndicativePresent
+				<IndicativePresent
 					setCurrentQ={setCurrentQ}
 					totalQs={totalQs}
 					verbType={verbType}
-				/> */}
+				/>
 
 				<CheckConjugation />
 
-				{/* <div className="totalQs">{totalQs}</div> */}
+				<div className="totalQs">{totalQs}</div>
 
-				{/* <div className="answerFormCon">
+				<div className="answerFormCon">
 					<div className="tildeButtonCon">
 						<button className="tildeButton" onClick={() => tildes('á')}>
 							á
@@ -130,9 +130,9 @@ function App(props) {
 						/>
 						<button className="answerInputButton">Submit!</button>
 					</form>
-				</div> */}
+				</div>
 
-				{/* <VerbTypeSelector verbType={verbType} setVerbType={setVerbType} /> */}
+				<VerbTypeSelector verbType={verbType} setVerbType={setVerbType} />
 			</div>
 		</ApolloProvider>
 	);
