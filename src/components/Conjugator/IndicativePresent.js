@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchVerbs } from '../actions';
+import { fetchVerbs } from '../../actions';
 const IndicativePresent = props => {
 	useEffect(() => {
 		props.fetchVerbs();

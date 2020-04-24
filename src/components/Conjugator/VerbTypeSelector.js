@@ -4,7 +4,6 @@ const VerbTypeSelector = props => {
 	const [selectedIrr, setSelectedIrr] = useState();
 	const [selectedRef, setSelectedRef] = useState();
 
-	console.log(props.verbType);
 	const typeSelector = word => {
 		if (props.verbType.includes(word)) {
 			props.setVerbType(props.verbType.filter(item => item !== word));
@@ -26,9 +25,6 @@ const VerbTypeSelector = props => {
 			setSelectedRef('');
 		}
 	}, [props.verbType]);
-
-	console.log(selectedIrr);
-	console.log(selectedRef);
 
 	return (
 		<div>

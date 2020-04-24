@@ -73,6 +73,12 @@
 	font-size: 2rem;
 }
 
+.pushButton {
+	padding: 0.5rem;
+	margin: 0.3rem;
+	font-size: 2rem;
+}
+
 .totalQs {
 	font-size: 2rem;
 }

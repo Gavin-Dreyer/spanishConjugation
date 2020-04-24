@@ -72,6 +72,10 @@ const CheckConjugation = props => {
 			) : (
 				''
 			)}
+
+			<button className="pushButton" onClick={() => props.history.push('/')}>
+				Back to practice!
+			</button>
 		</div>
 	);
 };
