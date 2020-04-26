@@ -6,6 +6,7 @@ import { Route } from 'react-router-dom';
 
 import Conjugator from './components/Conjugator/Conjugator';
 import CheckConjugation from './components/CheckConjugation/CheckConjugation';
+import SignIn from './components/SignIn';
 import './App.css';
 
 const client = new ApolloClient({
@@ -16,7 +17,8 @@ function App(props) {
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
-				<Route exact path="/" component={Conjugator} />
+				<Route exact path="/" component={SignIn} />
+				<Route exact path="/practice" component={Conjugator} />
 				<Route path="/conjugations" component={CheckConjugation} />
 			</div>
 		</ApolloProvider>
