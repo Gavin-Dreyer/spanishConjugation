@@ -116,22 +116,23 @@
 .conjugationsCon {
 	height: 10%;
 	display: flex;
+	border-bottom: 1px dashed black;
 }
 
 .conjugationsView {
 	display: flex;
 	flex-direction: column;
 	width: 20%;
+	border-right: 1px dashed black;
 }
 
 .conjugations {
 	display: flex;
 	flex-direction: column;
 	width: 80%;
+	border-right: 1px dashed black;
 }
-/* .conjugations .title {
-	display: flex;
-	flex-direction: column;
-	border: 2px solid red;
-	width: 20%;
-} */
+
+.title {
+	font-size: 2rem;
+}
