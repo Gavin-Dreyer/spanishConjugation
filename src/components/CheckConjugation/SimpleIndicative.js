@@ -4,7 +4,7 @@ const SimpleIndicative = props => {
 	return (
 		<div className="conjugationsCon">
 			<div className="conjugationsView">
-				<p>Indicative</p>
+				<p className="mood">Indicative</p>
 				<p>yo</p>
 				<p>tú</p>
 				<p>él/ella/Ud.</p>
@@ -23,7 +23,7 @@ const SimpleIndicative = props => {
 				) {
 					return (
 						<div className="conjugations" key={idx}>
-							<p>{item.tense}</p>
+							<p className="tense">{item.tense}</p>
 							<p>{item.firstPersonSingular}</p>
 							<p>{item.secondPersonSingular}</p>
 							<p>{item.thirdPersonSingular}</p>

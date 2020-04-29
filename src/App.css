@@ -124,6 +124,7 @@
 	flex-direction: column;
 	width: 20%;
 	border-right: 1px dashed black;
+	padding-right: 0.5rem;
 }
 
 .conjugations {
@@ -135,4 +136,12 @@
 
 .title {
 	font-size: 2rem;
+}
+
+.tense {
+	text-decoration: underline;
+}
+
+.mood {
+	text-decoration: underline;
 }

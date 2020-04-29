@@ -4,7 +4,7 @@ const SimpleSubjunctive = props => {
 	return (
 		<div className="conjugationsCon">
 			<div className="conjugationsView">
-				<p>Subjunctive</p>
+				<p className="mood">Subjunctive</p>
 				<p>yo</p>
 				<p>tú</p>
 				<p>él/ella/Ud.</p>
@@ -21,7 +21,7 @@ const SimpleSubjunctive = props => {
 				) {
 					return (
 						<div className="conjugations" key={idx}>
-							<p>{item.tense}</p>
+							<p className="tense">{item.tense}</p>
 							<p>{item.firstPersonSingular}</p>
 							<p>{item.secondPersonSingular}</p>
 							<p>{item.thirdPersonSingular}</p>
