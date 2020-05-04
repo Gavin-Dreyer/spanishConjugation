@@ -17,8 +17,8 @@ function App(props) {
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
-				{/* <Route exact path="/" component={SignIn} /> */}
-				<Route exact path="/" component={Conjugator} />
+				<Route exact path="/" component={SignIn} />
+				<Route exact path="/practice" component={Conjugator} />
 				<Route path="/conjugations" component={CheckConjugation} />
 			</div>
 		</ApolloProvider>
