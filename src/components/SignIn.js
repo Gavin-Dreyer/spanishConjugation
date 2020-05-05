@@ -1,11 +1,16 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { TweenMax, Linear, Bounce, Back, Cubic, Quart } from 'gsap';
 
-const SignIn = () => {
+import { fetchLogin } from '../actions/accountActions';
+
+const SignIn = props => {
 	let textElement = useRef(null);
 	let mainAli = useRef(null);
 	let textBubble = useRef(null);
 	let bubbleText = useRef(null);
+
+	const dispatch = useDispatch();
 
 	const [userInput, setUserInput] = useState({
 		username: '',
@@ -45,6 +50,12 @@ const SignIn = () => {
 	const handleChange = e => {
 		setUserInput({ ...userInput, [e.target.name]: e.target.value });
 	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		dispatch(fetchLogin(userInput, props.history));
+	};
+
 	return (
 		<div>
 			<nav>
@@ -54,7 +65,7 @@ const SignIn = () => {
 				<a href="/signup">Sign Up</a>
 			</nav>
 			<div className="signInCon">
-				<div className="signIn">
+				<form className="signIn" onSubmit={handleSubmit}>
 					<input
 						name="username"
 						type="text"
@@ -69,7 +80,7 @@ const SignIn = () => {
 						placeholder="Password"
 						value={userInput.password}
 					/>
-				</div>
+				</form>
 				<div>
 					<p
 						ref={element => {
