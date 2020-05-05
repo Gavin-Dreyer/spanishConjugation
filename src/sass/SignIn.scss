@@ -9,14 +9,6 @@ nav {
 		font-size: 2rem;
 		text-decoration: none;
 	}
-	.logo {
-		// height: 6rem;
-		// width: 10rem;
-		// background-image: url('../assets/logo.png');
-		// background-repeat: no-repeat;
-		// background-position: cover;
-		// background-size: 100%;
-	}
 }
 
 .signInCon {
@@ -24,13 +16,36 @@ nav {
 	justify-content: space-around;
 	padding: 0 2rem;
 
-	.mainAli {
-		height: 25rem;
-		width: 25rem;
-		background-image: url('../assets/logo.png');
-		background-repeat: no-repeat;
-		background-position: 0 4%;
-		background-size: 95%;
+	.imageCon {
+		display: flex;
+		margin-top: 8rem;
+
+		.mainAli {
+			height: 12.5rem;
+			width: 25rem;
+			background-image: url('../assets/logo.png');
+			background-repeat: no-repeat;
+			background-position: 0 4%;
+			background-size: 95%;
+		}
+
+		.textBubble {
+			height: 10rem;
+			width: 11rem;
+			background-image: url('../assets/textBubble.png');
+			background-repeat: no-repeat;
+			background-position: 0 4%;
+			background-size: 95%;
+
+			.bubbleText {
+				display: block;
+				margin-top: 1rem;
+				margin-left: 1.5rem;
+				height: 2rem;
+				width: 6rem;
+				font-size: 1.5rem;
+			}
+		}
 	}
 
 	.signIn {
