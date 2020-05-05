@@ -1,0 +1,16 @@
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 10rem;
+	padding: 0 4rem;
+
+	.logo {
+		height: 6rem;
+		width: 10rem;
+		background-image: url('../assets/logo.png');
+		background-repeat: no-repeat;
+		background-position: cover;
+		background-size: 100%;
+	}
+}

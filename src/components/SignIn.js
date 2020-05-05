@@ -10,22 +10,29 @@ const SignIn = () => {
 		setUserInput({ ...userInput, [e.target.name]: e.target.value });
 	};
 	return (
-		<>
-			<input
-				name="username"
-				type="text"
-				onChange={handleChange}
-				placeholder="Username"
-				value={userInput.username}
-			/>
-			<input
-				name="password"
-				type="password"
-				onChange={handleChange}
-				placeholder="Password"
-				value={userInput.password}
-			/>
-		</>
+		<div>
+			<nav>
+				<a className="logo" href="/"></a>
+
+				<a href="/signup">Signup</a>
+			</nav>
+			<div>
+				<input
+					name="username"
+					type="text"
+					onChange={handleChange}
+					placeholder="Username"
+					value={userInput.username}
+				/>
+				<input
+					name="password"
+					type="password"
+					onChange={handleChange}
+					placeholder="Password"
+					value={userInput.password}
+				/>
+			</div>
+		</div>
 	);
 };
 export default SignIn;

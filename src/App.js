@@ -8,6 +8,7 @@ import Conjugator from './components/Conjugator/Conjugator';
 import CheckConjugation from './components/CheckConjugation/CheckConjugation';
 import SignIn from './components/SignIn';
 import './App.css';
+import './sass/SignIn.scss';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:5555/graphql'
