@@ -5,12 +5,58 @@ nav {
 	height: 10rem;
 	padding: 0 4rem;
 
+	a {
+		font-size: 2rem;
+		text-decoration: none;
+	}
 	.logo {
-		height: 6rem;
-		width: 10rem;
+		// height: 6rem;
+		// width: 10rem;
+		// background-image: url('../assets/logo.png');
+		// background-repeat: no-repeat;
+		// background-position: cover;
+		// background-size: 100%;
+	}
+}
+
+.signInCon {
+	display: flex;
+	justify-content: space-around;
+	padding: 0 2rem;
+
+	.mainAli {
+		height: 25rem;
+		width: 25rem;
 		background-image: url('../assets/logo.png');
 		background-repeat: no-repeat;
-		background-position: cover;
-		background-size: 100%;
+		background-position: 0 4%;
+		background-size: 95%;
+	}
+
+	.signIn {
+		display: flex;
+		flex-direction: column;
+		height: 25rem;
+		width: 40%;
+
+		input {
+			width: 80%;
+			height: 30%;
+			border: none;
+			margin: auto;
+			font-size: 1.5rem;
+			padding-left: 1rem;
+			border-radius: 25px;
+			border: 1px solid grey;
+		}
+
+		input:focus {
+			border-radius: 25px;
+			outline: none;
+			border: 1px solid blue;
+		}
+		input::placeholder {
+			font-size: 1.5rem;
+		}
 	}
 }

@@ -12,25 +12,29 @@ const SignIn = () => {
 	return (
 		<div>
 			<nav>
-				<a className="logo" href="/"></a>
-
-				<a href="/signup">Signup</a>
+				<a className="logo" href="/">
+					Conjugator
+				</a>
+				<a href="/signup">Sign Up</a>
 			</nav>
-			<div>
-				<input
-					name="username"
-					type="text"
-					onChange={handleChange}
-					placeholder="Username"
-					value={userInput.username}
-				/>
-				<input
-					name="password"
-					type="password"
-					onChange={handleChange}
-					placeholder="Password"
-					value={userInput.password}
-				/>
+			<div className="signInCon">
+				<div className="signIn">
+					<input
+						name="username"
+						type="text"
+						onChange={handleChange}
+						placeholder="Username"
+						value={userInput.username}
+					/>
+					<input
+						name="password"
+						type="password"
+						onChange={handleChange}
+						placeholder="Password"
+						value={userInput.password}
+					/>
+				</div>
+				<div className="mainAli"></div>
 			</div>
 		</div>
 	);
