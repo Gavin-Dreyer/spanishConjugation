@@ -7,7 +7,7 @@ export const ACCOUNT_FAILURE = 'ACCOUNT_FAILURE';
 export const fetchLogin = (user, history) => dispatch => {
 	dispatch({ type: ACCOUNT_FETCH });
 	axios
-		.post('http://localhost:4444', user)
+		.post('http://localhost:4444/api/user/login', user)
 		.then(res => {
 			dispatch({ type: ACCOUNT_SUCCESS, payload: res.data });
 			history.push('/practice');
