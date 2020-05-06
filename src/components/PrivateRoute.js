@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {

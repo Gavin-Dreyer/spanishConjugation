@@ -20,7 +20,7 @@ const Conjugator = props => {
 	const user = useSelector(state => state.user);
 
 	useEffect(() => {
-		props.fetchVerbs();
+		props.fetchVerbs(props.history);
 	}, []);
 
 	useEffect(() => {
