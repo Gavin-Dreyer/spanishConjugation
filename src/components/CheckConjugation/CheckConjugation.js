@@ -73,7 +73,10 @@ const CheckConjugation = props => {
 				''
 			)}
 
-			<button className="pushButton" onClick={() => props.history.push('/')}>
+			<button
+				className="pushButton"
+				onClick={() => props.history.push('/practice')}
+			>
 				Back to practice!
 			</button>
 		</div>

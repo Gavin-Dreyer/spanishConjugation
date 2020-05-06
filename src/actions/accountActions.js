@@ -10,6 +10,7 @@ export const fetchLogin = (user, history) => dispatch => {
 		.post('http://localhost:4444/api/user/login', user)
 		.then(res => {
 			dispatch({ type: ACCOUNT_SUCCESS, payload: res.data });
+			localStorage.setItem('token', res.data.token);
 			history.push('/practice');
 		})
 		.catch(err => dispatch({ type: ACCOUNT_FAILURE, payload: err }));
