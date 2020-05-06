@@ -22,7 +22,7 @@ const SignUp = props => {
 	};
 
 	return (
-		<div>
+		<div className="mainSign">
 			<nav>
 				<a className="logo" href="/">
 					Conjugator

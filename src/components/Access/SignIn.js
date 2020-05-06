@@ -57,13 +57,10 @@ const SignIn = props => {
 	};
 
 	return (
-		<div>
-			<nav>
-				<a className="logo" href="/">
-					Conjugator
-				</a>
-				<a href="/signup">Sign Up</a>
-			</nav>
+		<div className="mainSign">
+			<a className="logo" href="/">
+				Conjugator Photo by Luke Chesser on Unsplash
+			</a>
 			<div className="signInCon">
 				<form className="signIn" onSubmit={handleSubmit}>
 					<input
@@ -81,7 +78,9 @@ const SignIn = props => {
 						value={userInput.password}
 					/>
 
-					<button onSubmit={handleSubmit}>Sign In</button>
+					<button className="signBtn" onSubmit={handleSubmit}>
+						Sign In
+					</button>
 				</form>
 				<div>
 					<p
@@ -116,6 +115,9 @@ const SignIn = props => {
 					</div>
 				</div>
 			</div>
+			<nav>
+				<a href="/signup">Sign Up</a>
+			</nav>
 		</div>
 	);
 };
