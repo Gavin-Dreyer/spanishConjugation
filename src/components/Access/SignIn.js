@@ -58,10 +58,13 @@ const SignIn = props => {
 
 	return (
 		<div className="mainSign">
-			<a className="logo" href="/">
-				Conjugator Photo by Luke Chesser on Unsplash
-			</a>
 			<div className="signInCon">
+				<div className="logoCon">
+					<a className="logo" href="/">
+						Conjugator
+					</a>
+				</div>
+
 				<form className="signIn" onSubmit={handleSubmit}>
 					<input
 						name="username"
@@ -82,42 +85,43 @@ const SignIn = props => {
 						Sign In
 					</button>
 				</form>
-				<div>
-					<p
+			</div>
+			<div className="mainImg">
+				<div
+					className="signUp"
+					ref={element => {
+						textElement = element;
+					}}
+				>
+					<a href="/signup">Sign Up</a>
+				</div>
+
+				<div className="imageCon">
+					<div
+						className="textBubble"
 						ref={element => {
-							textElement = element;
+							textBubble = element;
 						}}
 					>
-						Welcome to The Conjugator!
-					</p>
-					<div className="imageCon">
-						<div
-							className="textBubble"
+						<span
+							className="bubbleText"
 							ref={element => {
-								textBubble = element;
+								bubbleText = element;
 							}}
 						>
-							<span
-								className="bubbleText"
-								ref={element => {
-									bubbleText = element;
-								}}
-							>
-								Sign In to get practicing!
-							</span>
-						</div>
-						<div
-							className="mainAli"
-							ref={element => {
-								mainAli = element;
-							}}
-						></div>
+							Sign In to get practicing!
+						</span>
 					</div>
+					<div
+						className="mainAli"
+						ref={element => {
+							mainAli = element;
+						}}
+					></div>
 				</div>
 			</div>
-			<nav>
-				<a href="/signup">Sign Up</a>
-			</nav>
+
+			{/* <div>Photo by Luke Chesser on Unsplash</div> */}
 		</div>
 	);
 };
