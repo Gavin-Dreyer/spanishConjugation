@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { fetchVerbs } from '../../actions';
 
@@ -17,7 +17,6 @@ const Conjugator = props => {
 	const [answers, setAnswers] = useState({
 		answerInput: ''
 	});
-	const user = useSelector(state => state.user);
 
 	useEffect(() => {
 		props.fetchVerbs(props.history);
@@ -76,7 +75,6 @@ const Conjugator = props => {
 		inputElement.current.focus();
 	}
 
-	console.log(props);
 	return (
 		<>
 			<IndicativePresent

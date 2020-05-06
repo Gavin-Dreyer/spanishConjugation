@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Conjugator from './components/Conjugator/Conjugator';
@@ -17,11 +17,14 @@ const client = new ApolloClient({
 });
 
 function App(props) {
+	const s = useSelector(state => state);
+
+	console.log(s);
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
 				<Route exact path="/" component={SignIn} />
-				<Route path="signup" component={SignUp} />
+				<Route path="/signup" component={SignUp} />
 				<PrivateRoute path="/practice" component={Conjugator} />
 				<PrivateRoute path="/conjugations" component={CheckConjugation} />
 			</div>

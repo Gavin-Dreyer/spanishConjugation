@@ -1,4 +1,3 @@
-import axios from 'axios';
 import AxiosWithAuth from '../components/Auth/AxiosWithAuth';
 
 export const START_FETCHING = 'START_FETCHING';
@@ -10,7 +9,7 @@ export const fetchVerbs = history => dispatch => {
 		.get(`http://localhost:4444/api/tense/`)
 		.then(res => dispatch({ type: FETCH_SUCCESS, payload: res.data }))
 		.catch(err => {
-			dispatch({ type: FETCH_FAILURE, payload: err });
+			dispatch({ type: FETCH_FAILURE, payload: err.response });
 			if (history) {
 				return err.response.status === 401 ? history.push('/') : null;
 			}

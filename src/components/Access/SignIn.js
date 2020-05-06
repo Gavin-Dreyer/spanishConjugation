@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { TweenMax, Linear, Bounce, Back, Cubic, Quart } from 'gsap';
+import { useDispatch } from 'react-redux';
+import { TweenMax, Cubic, Quart } from 'gsap';
 
 import { fetchLogin } from '../../actions/accountActions';
 
@@ -11,7 +11,6 @@ const SignIn = props => {
 	let bubbleText = useRef(null);
 
 	const dispatch = useDispatch();
-	const user = useSelector(state => state.user);
 
 	const [userInput, setUserInput] = useState({
 		username: '',
@@ -56,8 +55,6 @@ const SignIn = props => {
 		e.preventDefault();
 		dispatch(fetchLogin(userInput, props.history));
 	};
-
-	console.log(user);
 
 	return (
 		<div>
