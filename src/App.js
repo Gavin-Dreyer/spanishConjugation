@@ -17,9 +17,9 @@ const client = new ApolloClient({
 });
 
 function App(props) {
-	const s = useSelector(state => state);
+	const appState = useSelector(state => state);
 
-	console.log(s);
+	console.log(appState);
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
