@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TweenMax, Linear, Bounce, Back, Cubic, Quart } from 'gsap';
 
-import { fetchLogin } from '../actions/accountActions';
+import { fetchLogin } from '../../actions/accountActions';
 
 const SignIn = props => {
 	let textElement = useRef(null);
@@ -84,7 +84,7 @@ const SignIn = props => {
 						value={userInput.password}
 					/>
 
-					<button onSubmit={handleSubmit}>Click</button>
+					<button onSubmit={handleSubmit}>Sign In</button>
 				</form>
 				<div>
 					<p

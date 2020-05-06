@@ -4,10 +4,11 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 
-import PrivateRoute from './components/PrivateRoute';
+import PrivateRoute from './components/Auth/PrivateRoute';
 import Conjugator from './components/Conjugator/Conjugator';
 import CheckConjugation from './components/CheckConjugation/CheckConjugation';
-import SignIn from './components/SignIn';
+import SignIn from './components/Access/SignIn';
+import SignUp from './components/Access/SignUp';
 import './App.css';
 import './sass/SignIn.scss';
 
@@ -20,6 +21,7 @@ function App(props) {
 		<ApolloProvider client={client}>
 			<div className="App">
 				<Route exact path="/" component={SignIn} />
+				<Route path="signup" component={SignUp} />
 				<PrivateRoute path="/practice" component={Conjugator} />
 				<PrivateRoute path="/conjugations" component={CheckConjugation} />
 			</div>
