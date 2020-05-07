@@ -19,7 +19,7 @@ const SignIn = props => {
 
 	useEffect(() => {
 		TweenMax.from(mainAli, 1, {
-			x: 300,
+			y: 300,
 			opacity: 0,
 			scale: 0.5,
 			ease: Quart.easeIn,
@@ -60,7 +60,13 @@ const SignIn = props => {
 		<div className="mainSign">
 			<div className="signInCon">
 				<div className="logoCon">
-					<a className="logo" href="/">
+					<a
+						ref={element => {
+							textElement = element;
+						}}
+						className="logo"
+						href="/"
+					>
 						Conjugator
 					</a>
 				</div>
@@ -87,13 +93,10 @@ const SignIn = props => {
 				</form>
 			</div>
 			<div className="mainImg">
-				<div
-					className="signUp"
-					ref={element => {
-						textElement = element;
-					}}
-				>
-					<a href="/signup">Sign Up</a>
+				<div className="signUp">
+					<button className="signBtn" href="/signup">
+						<a href="/signup">Sign Up</a>
+					</button>
 				</div>
 
 				<div className="imageCon">

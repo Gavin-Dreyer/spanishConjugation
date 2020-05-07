@@ -97,6 +97,29 @@
 			align-items: center;
 			height: 20%;
 			width: 100%;
+
+			.signBtn {
+				width: 40%;
+				height: 40%;
+				margin: auto;
+				font-size: 1rem;
+				border-radius: 25px;
+				background-color: blue;
+				transition: all 0.2s;
+
+				a {
+					text-decoration: none;
+					color: white;
+				}
+			}
+
+			.signBtn:hover {
+				border: 0.4rem solid grey;
+			}
+
+			.signBtn:focus {
+				outline: none;
+			}
 		}
 
 		.imageCon {
@@ -116,7 +139,8 @@
 
 			.textBubble {
 				height: 50%;
-				width: 30%;
+				width: 35%;
+				margin-top: -10rem;
 				background-image: url('../assets/textBubble.png');
 				background-repeat: no-repeat;
 				background-position: 0 4%;
@@ -126,7 +150,6 @@
 					display: block;
 					margin-top: 2.5rem;
 					margin-left: 2rem;
-					// height: 2rem;
 					width: 6rem;
 					font-size: 1.5rem;
 				}
