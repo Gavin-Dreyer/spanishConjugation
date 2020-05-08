@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import Conjugator from './components/Conjugator/Conjugator';
 import CheckConjugation from './components/CheckConjugation/CheckConjugation';
-import SignIn from './components/Access/SignIn';
-import SignUp from './components/Access/SignUp';
+import Landing from './components/Access/Landing';
+
 import './App.css';
 import './sass/SignIn.scss';
 
@@ -23,8 +23,7 @@ function App(props) {
 	return (
 		<ApolloProvider client={client}>
 			<div className="App">
-				<Route exact path="/" component={SignIn} />
-				<Route path="/signup" component={SignUp} />
+				<Route exact path="/" component={Landing} />
 				<PrivateRoute path="/practice" component={Conjugator} />
 				<PrivateRoute path="/conjugations" component={CheckConjugation} />
 			</div>

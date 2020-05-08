@@ -56,6 +56,10 @@ const SignIn = props => {
 		dispatch(fetchLogin(userInput, props.history));
 	};
 
+	const handleTransition = () => {
+		props.setTransition(true);
+	};
+
 	return (
 		<div className="mainSign">
 			<div className="signInCon">
@@ -94,8 +98,8 @@ const SignIn = props => {
 			</div>
 			<div className="mainImg">
 				<div className="signUp">
-					<button className="signBtn" href="/signup">
-						<a href="/signup">Sign Up</a>
+					<button className="signBtn" onClick={() => handleTransition()}>
+						Sign Up
 					</button>
 				</div>
 

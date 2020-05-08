@@ -21,13 +21,17 @@ const SignUp = props => {
 		dispatch(signUp(userInput, props.history));
 	};
 
+	const handleTransition = () => {
+		props.setTransition(false);
+	};
+
 	return (
 		<div className="mainSign">
 			<nav>
 				<a className="logo" href="/">
 					Conjugator
 				</a>
-				<a href="/">Sign In</a>
+				<button onClick={() => handleTransition()}>Sign In</button>
 			</nav>
 			{error ? error.data.message : ''}
 			<p>Sign up to get started!</p>
@@ -48,7 +52,7 @@ const SignUp = props => {
 						value={userInput.password}
 					/>
 
-					<button onSubmit={handleSubmit}>Sign In</button>
+					<button onSubmit={handleSubmit}>Sign Up</button>
 				</form>
 			</div>
 		</div>

@@ -1,157 +1,158 @@
-.mainSign {
-	font-family: 'Palatino Linotype', 'Book Antiqua', Palatino;
-	width: 100%;
+.landingCon {
 	height: 100%;
-	margin: auto;
-	box-shadow: 2px 5px 5px 1px;
-	display: flex;
 
-	// nav {
-	// 	display: flex;
-	// justify-content: space-between;
-	// align-items: center;
-	// 	// height: 10rem;
-	// 	padding: 0 4rem;
-	//
-	// }
-
-	.signInCon {
-		display: flex;
-		flex-direction: column;
+	.mainSign {
+		font-family: 'Palatino Linotype', 'Book Antiqua', Palatino;
+		width: 100%;
 		height: 100%;
-		width: 50%;
+		margin: auto;
+		box-shadow: 2px 5px 5px 1px;
+		display: flex;
 
-		.logoCon {
-			height: 20%;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-			align-items: center;
+		// nav {
+		// 	display: flex;
+		// justify-content: space-between;
+		// align-items: center;
+		// 	// height: 10rem;
+		// 	padding: 0 4rem;
+		//
+		// }
 
-			.logo {
-				text-align: center;
-				vertical-align: center;
-				font-size: 4rem;
-				text-decoration: none;
-			}
-		}
-
-		.signIn {
+		.signInCon {
 			display: flex;
 			flex-direction: column;
-			height: 80%;
-			width: 100%;
+			height: 100%;
+			width: 50%;
 
-			input {
-				width: 80%;
-				height: 10%;
-				border: none;
-				margin: auto;
-				font-size: 1.5rem;
-				padding-left: 1rem;
-				border-radius: 25px;
-				border: 1px solid grey;
-				transition: all 0.2s;
-			}
+			.logoCon {
+				height: 20%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 
-			input:focus {
-				border-radius: 25px;
-				outline: none;
-				border: 1px solid blue;
-			}
-			input::placeholder {
-				font-size: 1.5rem;
-			}
-
-			.signBtn {
-				width: 40%;
-				height: 10%;
-				margin: auto;
-				font-size: 1rem;
-				border-radius: 25px;
-				background-color: blue;
-				color: white;
-				transition: all 0.2s;
-			}
-
-			.signBtn:hover {
-				border: 0.4rem solid grey;
-			}
-
-			.signBtn:focus {
-				outline: none;
-			}
-		}
-	}
-
-	.mainImg {
-		width: 50%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-		.signUp {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 20%;
-			width: 100%;
-
-			.signBtn {
-				width: 40%;
-				height: 40%;
-				margin: auto;
-				font-size: 1rem;
-				border-radius: 25px;
-				background-color: blue;
-				transition: all 0.2s;
-
-				a {
+				.logo {
+					text-align: center;
+					vertical-align: center;
+					font-size: 4rem;
 					text-decoration: none;
-					color: white;
 				}
 			}
 
-			.signBtn:hover {
-				border: 0.4rem solid grey;
-			}
+			.signIn {
+				display: flex;
+				flex-direction: column;
+				height: 80%;
+				width: 100%;
 
-			.signBtn:focus {
-				outline: none;
+				input {
+					width: 80%;
+					height: 10%;
+					border: none;
+					margin: auto;
+					font-size: 1.5rem;
+					padding-left: 1rem;
+					border-radius: 25px;
+					border: 1px solid grey;
+					transition: all 0.2s;
+				}
+
+				input:focus {
+					border-radius: 25px;
+					outline: none;
+					border: 1px solid blue;
+				}
+				input::placeholder {
+					font-size: 1.5rem;
+				}
+
+				.signBtn {
+					width: 40%;
+					height: 10%;
+					margin: auto;
+					font-size: 1rem;
+					border-radius: 25px;
+					background-color: blue;
+					color: white;
+					transition: all 0.2s;
+				}
+
+				.signBtn:hover {
+					border: 0.4rem solid grey;
+				}
+
+				.signBtn:focus {
+					outline: none;
+				}
 			}
 		}
 
-		.imageCon {
+		.mainImg {
+			width: 50%;
+			height: 100%;
 			display: flex;
+			flex-direction: column;
 			align-items: center;
-			height: 60%;
-			width: 100%;
 
-			.mainAli {
-				height: 60%;
-				width: 25rem;
-				background-image: url('../assets/logo.png');
-				background-repeat: no-repeat;
-				background-position: 0 4%;
-				background-size: 95%;
+			.signUp {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 20%;
+				width: 100%;
+
+				.signBtn {
+					width: 40%;
+					height: 40%;
+					margin: auto;
+					font-size: 1rem;
+					border-radius: 25px;
+					background-color: blue;
+					transition: all 0.2s;
+					text-decoration: none;
+					color: white;
+				}
+
+				.signBtn:hover {
+					border: 0.4rem solid grey;
+				}
+
+				.signBtn:focus {
+					outline: none;
+				}
 			}
 
-			.textBubble {
-				height: 50%;
-				width: 35%;
-				margin-top: -10rem;
-				background-image: url('../assets/textBubble.png');
-				background-repeat: no-repeat;
-				background-position: 0 4%;
-				background-size: 95%;
+			.imageCon {
+				display: flex;
+				align-items: center;
+				height: 60%;
+				width: 100%;
 
-				.bubbleText {
-					display: block;
-					margin-top: 2.5rem;
-					margin-left: 2rem;
-					width: 6rem;
-					font-size: 1.5rem;
+				.mainAli {
+					height: 60%;
+					width: 25rem;
+					background-image: url('../assets/logo.png');
+					background-repeat: no-repeat;
+					background-position: 0 4%;
+					background-size: 95%;
+				}
+
+				.textBubble {
+					height: 50%;
+					width: 35%;
+					margin-top: -10rem;
+					background-image: url('../assets/textBubble.png');
+					background-repeat: no-repeat;
+					background-position: 0 4%;
+					background-size: 95%;
+
+					.bubbleText {
+						display: block;
+						margin-top: 2.5rem;
+						margin-left: 2rem;
+						width: 6rem;
+						font-size: 1.5rem;
+					}
 				}
 			}
 		}
