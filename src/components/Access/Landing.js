@@ -8,8 +8,14 @@ const Landing = () => {
 
 	return (
 		<div className="landingCon">
-			{!transition ? <SignIn setTransition={setTransition} /> : null}
-			{transition ? <SignUp setTransition={setTransition} /> : null}
+			{/* {!transition ? (
+				<SignIn transition={transition} setTransition={setTransition} />
+            ) : null} */}
+			<SignIn transition={transition} setTransition={setTransition} />
+			{/* {transition ? (
+				<SignUp transition={transition} setTransition={setTransition} />
+            ) : null} */}
+			<SignUp transition={transition} setTransition={setTransition} />
 		</div>
 	);
 };
