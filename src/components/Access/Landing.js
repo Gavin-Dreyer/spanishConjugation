@@ -4,18 +4,32 @@ import SignUp from './SignUp';
 import SignIn from './SignIn';
 
 const Landing = () => {
+	const [bool, setBool] = useState(true);
+	const [hide, setHide] = useState(false);
 	const [transition, setTransition] = useState(false);
 
 	return (
 		<div className="landingCon">
-			{/* {!transition ? (
-				<SignIn transition={transition} setTransition={setTransition} />
-            ) : null} */}
-			<SignIn transition={transition} setTransition={setTransition} />
-			{/* {transition ? (
-				<SignUp transition={transition} setTransition={setTransition} />
-            ) : null} */}
-			<SignUp transition={transition} setTransition={setTransition} />
+			{!hide ? (
+				<SignIn
+					bool={bool}
+					setBool={setBool}
+					hide={hide}
+					setHide={setHide}
+					transition={transition}
+					setTransition={setTransition}
+				/>
+			) : null}
+			{hide ? (
+				<SignUp
+					bool={bool}
+					setBool={setBool}
+					hide={hide}
+					setHide={setHide}
+					transition={transition}
+					setTransition={setTransition}
+				/>
+			) : null}
 		</div>
 	);
 };

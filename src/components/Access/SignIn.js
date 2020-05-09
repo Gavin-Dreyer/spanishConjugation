@@ -5,18 +5,19 @@ import { TweenMax, Cubic, Quart } from 'gsap';
 import { fetchLogin } from '../../actions/accountActions';
 
 const SignIn = props => {
-	let textElement = useRef(null);
+	let textElement1 = useRef(null);
+
 	let mainAli = useRef(null);
 	let textBubble = useRef(null);
 	let bubbleText = useRef(null);
 	let btn1 = useRef(null);
 	let btn2 = useRef(null);
+
 	let input1 = useRef(null);
 	let input2 = useRef(null);
 
 	const dispatch = useDispatch();
 
-	const [bool, setBool] = useState(true);
 	const [userInput, setUserInput] = useState({
 		username: '',
 		password: ''
@@ -28,7 +29,7 @@ const SignIn = props => {
 			opacity: 0,
 			scale: 0.5,
 			ease: Quart.easeIn,
-			delay: 1.2
+			delay: 1.1
 		});
 		TweenMax.from(textBubble, 1, {
 			x: 300,
@@ -42,13 +43,12 @@ const SignIn = props => {
 			opacity: 0,
 			scale: 0.5,
 			ease: Quart.easeIn,
-			delay: 1.3
+			delay: 1.2
 		});
-		TweenMax.from(textElement, 1, {
-			x: -300,
-			opacity: 0,
-			scale: 0.5,
-			ease: Cubic.easeIn
+		TweenMax.from(textElement1, 1.5, {
+			opacity: -1,
+			scale: 0.25,
+			ease: Quart.easeIn
 		});
 	}, []);
 
@@ -72,7 +72,7 @@ const SignIn = props => {
 				scale: 0.5,
 				ease: Cubic.easeIn
 			});
-			TweenMax.to(textElement, 1.25, {
+			TweenMax.to(textElement1, 1.25, {
 				x: 1000,
 				opacity: -1,
 				scale: 0.5,
@@ -116,19 +116,21 @@ const SignIn = props => {
 
 	const handleTransition = () => {
 		props.transition ? props.setTransition(false) : props.setTransition(true);
+
 		setTimeout(function() {
-			return bool ? setBool(false) : setBool(true);
+			props.hide ? props.setHide(false) : props.setHide(true);
+			return props.bool ? props.setBool(false) : props.setBool(true);
 		}, 1750);
 	};
-	console.log(props.transition, bool);
+
 	return (
 		<div className="mainSign">
-			<div className="signInCon">
-				<div className="logoCon">
+			<div className="signInCon" hidden={props.bool ? false : true}>
+				<div className="logoCon" hidden={props.bool ? false : true}>
 					<a
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 						ref={element => {
-							textElement = element;
+							textElement1 = element;
 						}}
 						className="logo"
 						href="/"
@@ -137,7 +139,11 @@ const SignIn = props => {
 					</a>
 				</div>
 
-				<form className="signIn" onSubmit={handleSubmit}>
+				<form
+					className="signIn"
+					onSubmit={handleSubmit}
+					hidden={props.bool ? false : true}
+				>
 					<input
 						name="username"
 						type="text"
@@ -147,7 +153,7 @@ const SignIn = props => {
 						ref={element => {
 							input1 = element;
 						}}
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 					/>
 					<input
 						name="password"
@@ -158,7 +164,7 @@ const SignIn = props => {
 						ref={element => {
 							input2 = element;
 						}}
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 					/>
 
 					<button
@@ -167,18 +173,18 @@ const SignIn = props => {
 						ref={element => {
 							btn2 = element;
 						}}
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 					>
 						Sign In
 					</button>
 				</form>
 			</div>
-			<div className="mainImg">
-				<div className="signUp">
+			<div className="mainImg" hidden={props.bool ? false : true}>
+				<div className="signUp" hidden={props.bool ? false : true}>
 					<button
 						className="signBtn"
 						onClick={() => handleTransition()}
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 						ref={element => {
 							btn1 = element;
 						}}
@@ -187,16 +193,16 @@ const SignIn = props => {
 					</button>
 				</div>
 
-				<div className="imageCon">
+				<div className="imageCon" hidden={props.bool ? false : true}>
 					<div
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 						className="textBubble"
 						ref={element => {
 							textBubble = element;
 						}}
 					>
 						<span
-							hidden={bool ? false : true}
+							hidden={props.bool ? false : true}
 							className="bubbleText"
 							ref={element => {
 								bubbleText = element;
@@ -206,7 +212,7 @@ const SignIn = props => {
 						</span>
 					</div>
 					<div
-						hidden={bool ? false : true}
+						hidden={props.bool ? false : true}
 						className="mainAli"
 						ref={element => {
 							mainAli = element;

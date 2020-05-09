@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { TweenMax, Cubic, Quart } from 'gsap';
 
 import { signUp } from '../../actions/accountActions';
 
 const SignUp = props => {
+	let textElement2 = useRef(null);
+	let btn3 = useRef(null);
+	let btn4 = useRef(null);
+	let input3 = useRef(null);
+	let input4 = useRef(null);
+
 	const dispatch = useDispatch();
 	const error = useSelector(state => state.error);
 
@@ -11,6 +18,41 @@ const SignUp = props => {
 		username: '',
 		password: ''
 	});
+
+	useEffect(() => {
+		// if (!props.transition) {
+		TweenMax.from(textElement2, 1.5, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(btn3, 1.5, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(btn4, 1.5, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(input3, 1.5, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(input4, 1.5, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		//
+	}, []);
 
 	const handleChange = e => {
 		setUserInput({ ...userInput, [e.target.name]: e.target.value });
@@ -27,22 +69,35 @@ const SignUp = props => {
 
 	return (
 		<div className="mainSign">
-			<nav>
-				<a className="logo" href="/">
-					Conjugator
-				</a>
-				<button onClick={() => handleTransition()}>Sign In</button>
-			</nav>
-			{error ? error.data.message : ''}
-			<p>Sign up to get started!</p>
-			<div className="signInCon">
-				<form className="signIn" onSubmit={handleSubmit}>
+			<div className="signInCon" hidden={props.bool ? true : false}>
+				<div className="logoCon" hidden={props.bool ? true : false}>
+					<a
+						hidden={props.bool ? true : false}
+						ref={element => {
+							textElement2 = element;
+						}}
+						className="logo"
+						href="/"
+					>
+						Conjugator
+					</a>
+				</div>
+
+				<form
+					className="signIn"
+					onSubmit={handleSubmit}
+					hidden={props.bool ? true : false}
+				>
 					<input
 						name="username"
 						type="text"
 						onChange={handleChange}
 						placeholder="Username"
 						value={userInput.username}
+						ref={element => {
+							input3 = element;
+						}}
+						hidden={props.bool ? true : false}
 					/>
 					<input
 						name="password"
@@ -50,11 +105,41 @@ const SignUp = props => {
 						onChange={handleChange}
 						placeholder="Password"
 						value={userInput.password}
+						ref={element => {
+							input4 = element;
+						}}
+						hidden={props.bool ? true : false}
 					/>
-
-					<button onSubmit={handleSubmit}>Sign Up</button>
+					<button
+						className="signBtn"
+						onSubmit={handleSubmit}
+						ref={element => {
+							btn4 = element;
+						}}
+						hidden={props.bool ? true : false}
+					>
+						Sign In
+					</button>
 				</form>
 			</div>
+
+			<div className="mainImg" hidden={props.bool ? true : false}>
+				<div className="signUp" hidden={props.bool ? true : false}>
+					<button
+						className="signBtn"
+						onClick={() => handleTransition()}
+						hidden={props.bool ? true : false}
+						ref={element => {
+							btn3 = element;
+						}}
+					>
+						Sign Up
+					</button>
+				</div>
+			</div>
+			{/* {
+		error ? error.data.message : '';
+	} */}
 		</div>
 	);
 };
