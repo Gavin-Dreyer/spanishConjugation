@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import SignUp from './SignUp';
 import SignIn from './SignIn';
 
-const Landing = () => {
+const Landing = props => {
 	const [bool, setBool] = useState(true);
 	const [hide, setHide] = useState(false);
 	const [transition, setTransition] = useState(false);
@@ -21,6 +21,7 @@ const Landing = () => {
 					setTransition={setTransition}
 					count={count}
 					setCount={setCount}
+					history={props.history}
 				/>
 			) : null}
 			{hide ? (
@@ -31,6 +32,7 @@ const Landing = () => {
 					setHide={setHide}
 					transition={transition}
 					setTransition={setTransition}
+					history={props.history}
 				/>
 			) : null}
 		</div>
