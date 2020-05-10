@@ -5,6 +5,9 @@ import { TweenMax, Cubic, Quart } from 'gsap';
 import { signUp } from '../../actions/accountActions';
 
 const SignUp = props => {
+	let mainAli = useRef(null);
+	let textBubble = useRef(null);
+	let bubbleText = useRef(null);
 	let textElement2 = useRef(null);
 	let btn3 = useRef(null);
 	let btn4 = useRef(null);
@@ -12,7 +15,7 @@ const SignUp = props => {
 	let input4 = useRef(null);
 
 	const dispatch = useDispatch();
-	const error = useSelector(state => state.error);
+	let error = useSelector(state => state.error);
 
 	const [userInput, setUserInput] = useState({
 		username: '',
@@ -20,6 +23,24 @@ const SignUp = props => {
 	});
 
 	useEffect(() => {
+		TweenMax.from(mainAli, 1, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(textBubble, 1, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
+		TweenMax.from(bubbleText, 1, {
+			x: -1000,
+			opacity: -1,
+			scale: 0.5,
+			ease: Cubic.easeIn
+		});
 		TweenMax.from(textElement2, 1, {
 			x: -1000,
 			opacity: -1,
@@ -54,6 +75,24 @@ const SignUp = props => {
 
 	useEffect(() => {
 		if (!props.transition) {
+			TweenMax.to(mainAli, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(textBubble, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(bubbleText, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
 			TweenMax.to(textElement2, 1, {
 				x: -1000,
 				opacity: -1,
@@ -105,9 +144,50 @@ const SignUp = props => {
 		}, 1500);
 	};
 
-	console.log(props.hide, props.bool);
 	return (
 		<div className="mainSign">
+			<div className="mainImg" hidden={props.bool ? true : false}>
+				<div className="signUp" hidden={props.bool ? true : false}>
+					<button
+						className="signBtn"
+						onClick={() => handleTransition()}
+						hidden={props.bool ? true : false}
+						ref={element => {
+							btn3 = element;
+						}}
+					>
+						Sign In
+					</button>
+				</div>
+
+				<div className="imageCon" hidden={props.bool ? false : true}>
+					<div
+						hidden={props.bool ? true : false}
+						className="mainAli"
+						ref={element => {
+							mainAli = element;
+						}}
+					></div>
+					<div
+						hidden={props.bool ? true : false}
+						className="textBubbleLeft"
+						ref={element => {
+							textBubble = element;
+						}}
+					>
+						<span
+							hidden={props.bool ? true : false}
+							className="bubbleText"
+							ref={element => {
+								bubbleText = element;
+							}}
+						>
+							Create an account!
+						</span>
+					</div>
+				</div>
+			</div>
+
 			<div className="signInCon" hidden={props.bool ? true : false}>
 				<div className="logoCon" hidden={props.bool ? true : false}>
 					<a
@@ -127,6 +207,7 @@ const SignUp = props => {
 					onSubmit={handleSubmit}
 					hidden={props.bool ? true : false}
 				>
+					<p>{error ? error.data.message : ''}</p>
 					<input
 						name="username"
 						type="text"
@@ -157,28 +238,10 @@ const SignUp = props => {
 						}}
 						hidden={props.bool ? true : false}
 					>
-						Sign In
+						Sign Up
 					</button>
 				</form>
 			</div>
-
-			<div className="mainImg" hidden={props.bool ? true : false}>
-				<div className="signUp" hidden={props.bool ? true : false}>
-					<button
-						className="signBtn"
-						onClick={() => handleTransition()}
-						hidden={props.bool ? true : false}
-						ref={element => {
-							btn3 = element;
-						}}
-					>
-						Sign Up
-					</button>
-				</div>
-			</div>
-			{/* {
-		error ? error.data.message : '';
-	} */}
 		</div>
 	);
 };

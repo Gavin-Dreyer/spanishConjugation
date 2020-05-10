@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TweenMax, Cubic, Quart } from 'gsap';
 
 import { fetchLogin } from '../../actions/accountActions';
@@ -12,11 +12,11 @@ const SignIn = props => {
 	let bubbleText = useRef(null);
 	let btn1 = useRef(null);
 	let btn2 = useRef(null);
-
 	let input1 = useRef(null);
 	let input2 = useRef(null);
 
 	const dispatch = useDispatch();
+	let error = useSelector(state => state.error);
 
 	const [userInput, setUserInput] = useState({
 		username: '',
@@ -24,6 +24,11 @@ const SignIn = props => {
 	});
 
 	useEffect(() => {
+		TweenMax.from(textElement1, 1.5, {
+			opacity: 0,
+			scale: 0.25,
+			ease: Quart.easeIn
+		});
 		TweenMax.from(mainAli, 1, {
 			y: 300,
 			opacity: 0,
@@ -45,11 +50,6 @@ const SignIn = props => {
 			ease: Quart.easeIn,
 			delay: 1.2
 		});
-		// TweenMax.from(textElement1, 1.5, {
-		// 	opacity: -2,
-		// 	scale: 0.25,
-		// 	ease: Quart.easeIn
-		// });
 	}, []);
 
 	useEffect(() => {
@@ -175,6 +175,7 @@ const SignIn = props => {
 		}, 1500);
 	};
 
+	console.log(error);
 	return (
 		<div className="mainSign">
 			<div className="signInCon" hidden={props.bool ? false : true}>
@@ -196,6 +197,7 @@ const SignIn = props => {
 					onSubmit={handleSubmit}
 					hidden={props.bool ? false : true}
 				>
+					<p>{error ? error.data.message : ''}</p>
 					<input
 						name="username"
 						type="text"
@@ -265,7 +267,7 @@ const SignIn = props => {
 					</div>
 					<div
 						hidden={props.bool ? false : true}
-						className="mainAli"
+						className="fullAli"
 						ref={element => {
 							mainAli = element;
 						}}
