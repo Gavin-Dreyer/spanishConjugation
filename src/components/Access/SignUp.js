@@ -20,39 +20,72 @@ const SignUp = props => {
 	});
 
 	useEffect(() => {
-		// if (!props.transition) {
-		TweenMax.from(textElement2, 1.5, {
+		TweenMax.from(textElement2, 1, {
 			x: -1000,
 			opacity: -1,
 			scale: 0.5,
 			ease: Cubic.easeIn
 		});
-		TweenMax.from(btn3, 1.5, {
+		TweenMax.from(btn3, 1, {
 			x: -1000,
 			opacity: -1,
 			scale: 0.5,
 			ease: Cubic.easeIn
 		});
-		TweenMax.from(btn4, 1.5, {
+		TweenMax.from(btn4, 1, {
 			x: -1000,
 			opacity: -1,
 			scale: 0.5,
 			ease: Cubic.easeIn
 		});
-		TweenMax.from(input3, 1.5, {
+		TweenMax.from(input3, 1, {
 			x: -1000,
 			opacity: -1,
 			scale: 0.5,
 			ease: Cubic.easeIn
 		});
-		TweenMax.from(input4, 1.5, {
+		TweenMax.from(input4, 1, {
 			x: -1000,
 			opacity: -1,
 			scale: 0.5,
 			ease: Cubic.easeIn
 		});
-		//
 	}, []);
+
+	useEffect(() => {
+		if (!props.transition) {
+			TweenMax.to(textElement2, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(btn3, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(btn4, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(input3, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.to(input4, 1, {
+				x: -1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+		}
+	}, [props.transition]);
 
 	const handleChange = e => {
 		setUserInput({ ...userInput, [e.target.name]: e.target.value });
@@ -64,9 +97,15 @@ const SignUp = props => {
 	};
 
 	const handleTransition = () => {
-		props.setTransition(false);
+		props.transition ? props.setTransition(false) : props.setTransition(true);
+
+		setTimeout(function() {
+			props.hide ? props.setHide(false) : props.setHide(true);
+			props.bool ? props.setBool(false) : props.setBool(true);
+		}, 1500);
 	};
 
+	console.log(props.hide, props.bool);
 	return (
 		<div className="mainSign">
 			<div className="signInCon" hidden={props.bool ? true : false}>

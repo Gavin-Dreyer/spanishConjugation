@@ -7,6 +7,7 @@ const Landing = () => {
 	const [bool, setBool] = useState(true);
 	const [hide, setHide] = useState(false);
 	const [transition, setTransition] = useState(false);
+	const [count, setCount] = useState(0);
 
 	return (
 		<div className="landingCon">
@@ -18,6 +19,8 @@ const Landing = () => {
 					setHide={setHide}
 					transition={transition}
 					setTransition={setTransition}
+					count={count}
+					setCount={setCount}
 				/>
 			) : null}
 			{hide ? (

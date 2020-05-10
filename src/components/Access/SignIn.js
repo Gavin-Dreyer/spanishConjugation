@@ -45,11 +45,11 @@ const SignIn = props => {
 			ease: Quart.easeIn,
 			delay: 1.2
 		});
-		TweenMax.from(textElement1, 1.5, {
-			opacity: -1,
-			scale: 0.25,
-			ease: Quart.easeIn
-		});
+		// TweenMax.from(textElement1, 1.5, {
+		// 	opacity: -2,
+		// 	scale: 0.25,
+		// 	ease: Quart.easeIn
+		// });
 	}, []);
 
 	useEffect(() => {
@@ -103,6 +103,57 @@ const SignIn = props => {
 				ease: Cubic.easeIn
 			});
 		}
+
+		if (!props.transition && props.count > 0) {
+			TweenMax.from(mainAli, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeOut
+			});
+			TweenMax.from(textBubble, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(bubbleText, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(textElement1, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(btn1, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(btn2, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(input1, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+			TweenMax.from(input2, 1, {
+				x: 1000,
+				opacity: -1,
+				scale: 0.5,
+				ease: Cubic.easeIn
+			});
+		}
 	}, [props.transition]);
 
 	const handleChange = e => {
@@ -116,11 +167,12 @@ const SignIn = props => {
 
 	const handleTransition = () => {
 		props.transition ? props.setTransition(false) : props.setTransition(true);
+		props.setCount(props.count + 1);
 
 		setTimeout(function() {
 			props.hide ? props.setHide(false) : props.setHide(true);
-			return props.bool ? props.setBool(false) : props.setBool(true);
-		}, 1750);
+			props.bool ? props.setBool(false) : props.setBool(true);
+		}, 1500);
 	};
 
 	return (
