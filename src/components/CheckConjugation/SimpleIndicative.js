@@ -16,10 +16,10 @@ const SimpleIndicative = props => {
 				if (
 					item.mood === 'Indicativo' &&
 					(item.tense === 'Presente' ||
-						item.tense === 'Pretérito' ||
 						item.tense === 'Imperfecto' ||
-						item.tense === 'Futuro' ||
-						item.tense === 'Condicional')
+						item.tense === 'Pretérito' ||
+						item.tense === 'Condicional' ||
+						item.tense === 'Futuro')
 				) {
 					return (
 						<div className="conjugations" key={idx}>

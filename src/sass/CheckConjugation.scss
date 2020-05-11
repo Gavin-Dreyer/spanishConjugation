@@ -1,27 +1,78 @@
 .checkCons {
+	overflow: hidden;
+	height: 100%;
+
+	.header {
+		display: flex;
+		width: 100%;
+
+		.pushButton {
+			width: 20%;
+		}
+		h2 {
+			width: 60%;
+			margin-right: 20%;
+		}
+	}
+
 	.answerForm {
 		display: flex;
 		flex-direction: column;
+		justify-content: space-around;
 		width: 30%;
+		height: 15%;
 		margin: 0 auto 0 auto;
 
+		input {
+			font-size: 1.5rem;
+			width: 80%;
+			height: 40%;
+			margin: auto;
+			padding-left: 1rem;
+			border-radius: 25px;
+		}
+
+		input:focus {
+			border-radius: 25px;
+			outline: none;
+			border: 1px solid blue;
+		}
+		input::placeholder {
+			font-size: 1.5rem;
+		}
+
 		.answerInputButton {
-			margin: 0.5rem;
-			font-size: 2rem;
+			width: 80%;
+			height: 30%;
+			margin: auto;
+			font-size: 1rem;
+			border-radius: 25px;
+			background-color: white;
+			color: black;
+			transition: all 0.2s;
+		}
+
+		.answerInputButton:hover {
+			border: 0.4rem solid black;
+		}
+
+		.answerInputButton:focus {
+			outline: none;
 		}
 	}
 
 	.conjugationsMainCon {
 		width: 95%;
+		height: 70%;
 		margin: auto;
-		height: auto;
+		overflow-y: scroll;
 
 		.title {
-			font-size: 2rem;
+			font-size: 1.5rem;
 		}
 
 		.conjugationsCon {
-			height: 10%;
+			height: 70%;
 			display: flex;
 			border-bottom: 1px dashed black;
 
@@ -51,8 +102,21 @@
 	}
 
 	.pushButton {
-		padding: 0.5rem;
-		margin: 0.3rem;
-		font-size: 2rem;
+		width: 20%;
+		height: 10%;
+		margin: auto;
+		font-size: 1rem;
+		border-radius: 25px;
+		background-color: white;
+		color: black;
+		transition: all 0.2s;
+	}
+
+	.pushButton:hover {
+		border: 0.4rem solid black;
+	}
+
+	.pushButton:focus {
+		outline: none;
 	}
 }

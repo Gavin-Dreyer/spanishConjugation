@@ -23,6 +23,10 @@ const GET_VERB = gql`
 `;
 
 const CheckConjugation = props => {
+	let practiceBtn1 = useRef(null);
+	let practiceBtn2 = useRef(null);
+
+	const [bool, setBool] = useState(false);
 	const [currentVerb, setCurrentVerb] = useState();
 	const [verbInput, setVerbInput] = useState({
 		vInput: ''
@@ -50,7 +54,18 @@ const CheckConjugation = props => {
 
 	return (
 		<div className="checkCons">
+			<button
+				hidden={bool ? false : true}
+				ref={element => {
+					practiceBtn2 = element;
+				}}
+				className="pushButton"
+				onClick={() => props.history.push('/practice')}
+			>
+				Back to practice!
+			</button>
 			<h2>Enter the verb to see its conjugations!</h2>
+
 			<form className="answerForm" onSubmit={handleSubmit}>
 				<input
 					type="text"
@@ -73,6 +88,10 @@ const CheckConjugation = props => {
 			) : null}
 
 			<button
+				hidden={bool ? true : false}
+				ref={element => {
+					practiceBtn1 = element;
+				}}
 				className="pushButton"
 				onClick={() => props.history.push('/practice')}
 			>
