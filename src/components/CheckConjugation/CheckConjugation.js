@@ -48,13 +48,14 @@ const CheckConjugation = props => {
 
 	if (loading) return 'Loading...';
 
-	console.log(currentVerb);
 	return (
-		<div>
+		<div className="checkCons">
+			<h2>Enter the verb to see its conjugations!</h2>
 			<form className="answerForm" onSubmit={handleSubmit}>
 				<input
 					type="text"
 					name="vInput"
+					placeholder="Verb"
 					value={verbInput.vInput}
 					onChange={handleChange}
 				/>
@@ -69,9 +70,7 @@ const CheckConjugation = props => {
 					<SimpleIndicative currentVerb={currentVerb} />
 					<SimpleSubjunctive currentVerb={currentVerb} />
 				</div>
-			) : (
-				''
-			)}
+			) : null}
 
 			<button
 				className="pushButton"

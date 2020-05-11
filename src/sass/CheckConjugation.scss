@@ -1,0 +1,58 @@
+.checkCons {
+	.answerForm {
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+		margin: 0 auto 0 auto;
+
+		.answerInputButton {
+			margin: 0.5rem;
+			font-size: 2rem;
+		}
+	}
+
+	.conjugationsMainCon {
+		width: 95%;
+		margin: auto;
+		height: auto;
+
+		.title {
+			font-size: 2rem;
+		}
+
+		.conjugationsCon {
+			height: 10%;
+			display: flex;
+			border-bottom: 1px dashed black;
+
+			.conjugationsView {
+				display: flex;
+				flex-direction: column;
+				width: 20%;
+				border-right: 1px dashed black;
+				padding-right: 0.5rem;
+
+				.mood {
+					text-decoration: underline;
+				}
+			}
+
+			.conjugations {
+				display: flex;
+				flex-direction: column;
+				width: 80%;
+				border-right: 1px dashed black;
+
+				.tense {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	.pushButton {
+		padding: 0.5rem;
+		margin: 0.3rem;
+		font-size: 2rem;
+	}
+}

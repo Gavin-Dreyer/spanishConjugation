@@ -29,12 +29,12 @@
 	margin-top: 3rem;
 }
 
-.answerForm {
+/* .answerForm {
 	display: flex;
 	flex-direction: column;
 	width: 30%;
 	margin: 0 auto 0 auto;
-}
+} */
 
 .answerInput {
 	margin: 0.5rem;
@@ -65,10 +65,10 @@
 	box-shadow: 3px 2px 3px #cd3232;
 }
 
-.answerInputButton {
+/* .answerInputButton {
 	margin: 0.5rem;
 	font-size: 2rem;
-}
+} */
 
 .tildeButton {
 	width: 50px;
@@ -77,11 +77,11 @@
 	font-size: 2rem;
 }
 
-.pushButton {
+/* .pushButton {
 	padding: 0.5rem;
 	margin: 0.3rem;
 	font-size: 2rem;
-}
+} */
 
 .totalQs {
 	font-size: 2rem;
@@ -108,44 +108,4 @@
 
 .selBut:focus {
 	outline: none;
-}
-
-/* CheckConjugation */
-.conjugationsMainCon {
-	width: 95%;
-	margin: auto;
-	height: auto;
-}
-
-.conjugationsCon {
-	height: 10%;
-	display: flex;
-	border-bottom: 1px dashed black;
-}
-
-.conjugationsView {
-	display: flex;
-	flex-direction: column;
-	width: 20%;
-	border-right: 1px dashed black;
-	padding-right: 0.5rem;
-}
-
-.conjugations {
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	border-right: 1px dashed black;
-}
-
-.title {
-	font-size: 2rem;
-}
-
-.tense {
-	text-decoration: underline;
-}
-
-.mood {
-	text-decoration: underline;
 }
