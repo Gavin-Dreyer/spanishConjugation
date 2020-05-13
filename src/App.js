@@ -12,6 +12,7 @@ import Landing from './components/Access/Landing';
 import './App.css';
 import './sass/SignIn.scss';
 import './sass/CheckConjugation.scss';
+import './sass/Conjugator.scss';
 
 const client = new ApolloClient({
 	uri: 'http://localhost:5555/graphql'
