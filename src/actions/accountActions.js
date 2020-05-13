@@ -7,7 +7,7 @@ export const ACCOUNT_FAILURE = 'ACCOUNT_FAILURE';
 export const fetchLogin = (user, history) => dispatch => {
 	dispatch({ type: ACCOUNT_FETCH });
 	axios
-		.post('http://localhost:4444/api/user/login', user)
+		.post(`${process.env.REACT_APP_HEROKU_API}/api/user/login`, user)
 		.then(res => {
 			dispatch({ type: ACCOUNT_SUCCESS });
 			localStorage.setItem('token', res.data.token);
@@ -24,7 +24,7 @@ export const signUp = (user, history) => dispatch => {
 	dispatch({ type: SIGNUP_REQUEST });
 
 	axios
-		.post('http://localhost:4444/api/user/', user)
+		.post(`${process.env.REACT_APP_HEROKU_API}/api/user/`, user)
 		.then(res => {
 			dispatch({ type: SIGNUP_SUCCESS });
 			localStorage.setItem('token', res.data.token);
