@@ -175,7 +175,6 @@ const SignIn = props => {
 		}, 1500);
 	};
 
-	console.log(error);
 	return (
 		<div className="mainSign">
 			<div className="signInCon" hidden={props.bool ? false : true}>

@@ -24,7 +24,7 @@ const Conjugator = props => {
 
 	useEffect(() => {
 		setVerbs(props.verbs);
-	});
+	}, [props.isFetching]);
 
 	if (!verbs) {
 		return <h2>Loading...</h2>;
