@@ -1,19 +1,7 @@
 .checkCons {
 	overflow: hidden;
+	width: 100%;
 	height: 100%;
-
-	.header {
-		display: flex;
-		width: 100%;
-
-		.pushButton {
-			width: 20%;
-		}
-		h2 {
-			width: 60%;
-			margin-right: 20%;
-		}
-	}
 
 	.answerForm {
 		display: flex;
@@ -43,7 +31,7 @@
 
 		.answerInputButton {
 			width: 80%;
-			height: 30%;
+			height: 40%;
 			margin: auto;
 			font-size: 1rem;
 			border-radius: 25px;
@@ -63,7 +51,7 @@
 
 	.conjugationsMainCon {
 		width: 95%;
-		height: 70%;
+		height: 60%;
 		margin: auto;
 		overflow-y: scroll;
 
@@ -72,7 +60,7 @@
 		}
 
 		.conjugationsCon {
-			height: 70%;
+			height: 100%;
 			display: flex;
 			border-bottom: 1px dashed black;
 
@@ -80,6 +68,7 @@
 				display: flex;
 				flex-direction: column;
 				width: 20%;
+				height: 100%;
 				border-right: 1px dashed black;
 				padding-right: 0.5rem;
 
@@ -110,6 +99,7 @@
 		background-color: white;
 		color: black;
 		transition: all 0.2s;
+		margin-top: 1rem;
 	}
 
 	.pushButton:hover {
