@@ -76,7 +76,7 @@ const Conjugator = props => {
 	}
 
 	return (
-		<>
+		<div className="conjugator">
 			<IndicativePresent
 				setCurrentQ={setCurrentQ}
 				totalQs={totalQs}
@@ -128,7 +128,7 @@ const Conjugator = props => {
 			>
 				Check Conjugations
 			</button>
-		</>
+		</div>
 	);
 };
 const mapStateToProps = state => {

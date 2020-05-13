@@ -27,7 +27,7 @@ const VerbTypeSelector = props => {
 	}, [props.verbType]);
 
 	return (
-		<div>
+		<div className="verbTypes">
 			<button
 				className={`${selectedRef} selBut`}
 				onClick={() => typeSelector('ref')}
