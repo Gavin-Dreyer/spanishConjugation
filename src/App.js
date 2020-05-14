@@ -15,7 +15,7 @@ import './sass/CheckConjugation.scss';
 import './sass/Conjugator.scss';
 
 const client = new ApolloClient({
-	uri: 'http://localhost:5555/graphql'
+	uri: process.env.REACT_APP_HEROKU_API_GRAPHQL
 });
 
 function App(props) {
