@@ -5,90 +5,42 @@ import { connect } from 'react-redux';
 
 import { fetchVerbs } from '../../actions';
 const IndicativePresent = props => {
-	//filters to seperate the mood/tense to break up the questions into difficulty
+	//filters to separate the mood/tense to break up the questions into difficulty
 
 	const [randVerb, setRandVerb] = useState();
 	const [randomizedTense, setRandomizedTense] = useState();
 
-	//creates an object to check if verb is reflexive
-	let checker = indPresent.map(item => {
-		let obj = {
-			reflexiveCheck: item.spanishVerb,
-			spanVerb: item.spanishVerb,
-			tense: item.firstPersonSingular
-		};
-
-		obj.reflexiveCheck = obj.reflexiveCheck.split('');
-
-		obj.reflexiveCheck = obj.reflexiveCheck.slice(
-			obj.reflexiveCheck.length - 2,
-			obj.reflexiveCheck.length
-		);
-
-		obj.reflexiveCheck = obj.reflexiveCheck.join('');
-
-		return obj;
-	});
-
-	//if verb is reflexive, filter it out
-	checker = checker.filter(item => {
-		if (item.reflexiveCheck !== 'se') {
-			return item;
-		}
-	});
-
-	//create new array with reflexive verbs filtered out
 	let nonReflexiveVerbs = [];
+	let nonIrregularVerbs = [];
+	let nonIrregularReflexive = [];
 
-	indPresent.forEach(item => {
-		for (let i = 0; i < checker.length; i++) {
-			if (item.spanishVerb === checker[i].spanVerb) {
-				nonReflexiveVerbs = [...nonReflexiveVerbs, item];
-			}
+	//populate an array with non reflexive verbs
+	props.verbs.forEach(verb => {
+		if (verb.spanishVerb.slice(-2) !== 'se') {
+			nonReflexiveVerbs.push(verb);
 		}
 	});
 
-	// indPresent.filter((item, index) => {
-	//     if (item.spanishVerb.slice(item.spanishVerb.length - 2, item.spanishVerb.length) !== 'se') {
-	//         return item
-	//     }
-	// })
+	//populate both an array without irregular verbs and one with neither irregular nor reflexive verbs
+	props.verbs.forEach(verb => {
+		let verbK = Object.keys(verb).filter((item, index) => index > 4);
+		let splitVerb = verb.spanishVerb.split('');
+		let splitVerb2 = verb[verbK[0]].split('');
+		splitVerb = splitVerb.slice(0, -2).join('');
+		splitVerb2 = splitVerb2.slice(0, -1).join('');
 
-	// filters out reflexive verbs
-	let nonIrregularVerbs = indPresent.filter(item => {
-		let splitArr = item.spanishVerb.split('');
-		let splitArr2 = item.firstPersonSingular.split('');
-		splitArr = splitArr.slice(0, splitArr.length - 2);
-		splitArr2 = splitArr2.slice(0, splitArr2.length - 1);
-		splitArr = splitArr.join('');
-		splitArr2 = splitArr2.join('');
-		if (
-			splitArr === splitArr2 ||
-			item.spanishVerb.slice(
-				item.spanishVerb.length - 2,
-				item.spanishVerb.length
-			) === 'se'
-		) {
-			return item;
+		if (splitVerb === splitVerb2 || verb.spanishVerb.slice(-2) === 'se') {
+			nonIrregularVerbs.push(verb);
+		}
+		if (splitVerb === splitVerb2) {
+			nonIrregularReflexive.push(verb);
 		}
 	});
 
-	//filters out the irregular verbs from the array that has already been filtered for reflexive
-	let nonIrregularReflexive = nonReflexiveVerbs.filter(item => {
-		let splitArr = item.spanishVerb.split('');
-		let splitArr2 = item.firstPersonSingular.split('');
-		splitArr = splitArr.slice(0, splitArr.length - 2);
-		splitArr2 = splitArr2.slice(0, splitArr2.length - 1);
-		splitArr = splitArr.join('');
-		splitArr2 = splitArr2.join('');
-		if (splitArr === splitArr2) {
-			return item;
-		}
-	});
-
+	//randomly choose a verb from the different arrays based on the users choice
 	useEffect(() => {
 		if (props.verbType.includes('irr') && props.verbType.includes('ref')) {
-			setRandVerb(indPresent[Math.floor(Math.random() * indPresent.length)]);
+			setRandVerb(props.verbs[Math.floor(Math.random() * props.verbs.length)]);
 		} else if (props.verbType.includes('irr')) {
 			setRandVerb(
 				nonReflexiveVerbs[Math.floor(Math.random() * nonReflexiveVerbs.length)]
@@ -98,7 +50,7 @@ const IndicativePresent = props => {
 				nonIrregularVerbs[Math.floor(Math.random() * nonIrregularVerbs.length)]
 			);
 		} else {
-			//randomly selects a verb from an array of indictive present verbs that are neither irregular nor reflexive
+			//randomly selects a verb from an array of indicative present verbs that are neither irregular nor reflexive
 			setRandVerb(
 				nonIrregularReflexive[
 					Math.floor(Math.random() * nonIrregularReflexive.length)
