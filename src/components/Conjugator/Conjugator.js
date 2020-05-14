@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchVerbs } from '../../actions';
+import { fetchIndicativePresent } from '../../actions';
 
 import IndicativePresent from './IndicativePresent';
 import VerbTypeSelector from './VerbTypeSelector';
@@ -19,7 +19,7 @@ const Conjugator = props => {
 	});
 
 	useEffect(() => {
-		props.fetchVerbs(props.history);
+		props.fetchIndicativePresent(props.history);
 	}, []);
 
 	useEffect(() => {
@@ -137,4 +137,4 @@ const mapStateToProps = state => {
 		isFetching: state.isFetching
 	};
 };
-export default connect(mapStateToProps, { fetchVerbs })(Conjugator);
+export default connect(mapStateToProps, { fetchIndicativePresent })(Conjugator);

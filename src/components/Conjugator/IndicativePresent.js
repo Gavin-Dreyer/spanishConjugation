@@ -5,13 +5,7 @@ import { connect } from 'react-redux';
 
 import { fetchVerbs } from '../../actions';
 const IndicativePresent = props => {
-	useEffect(() => {
-		props.fetchVerbs();
-	}, []);
-
 	//filters to seperate the mood/tense to break up the questions into difficulty
-	const indicative = props.verbs.filter(item => item.mood === 'Indicativo');
-	const indPresent = indicative.filter(item => item.tense === 'Presente');
 
 	const [randVerb, setRandVerb] = useState();
 	const [randomizedTense, setRandomizedTense] = useState();
